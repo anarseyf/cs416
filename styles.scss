@@ -1,0 +1,12 @@
+@font-face {
+  font-family: "JetBrains";
+  src: local("JetBrains Mono"), url("./fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf");
+}
+
+body {
+  background-color: rgb(20, 21, 25);
+  color: white;
+  font-variant: small-caps;
+  font-family: "JetBrains", monospace;
+  margin: 2em;
+}
