@@ -17,10 +17,6 @@
     "url": "https://github.com/anarseyf/cs416/issues"
   },
   "homepage": "https://github.com/anarseyf/cs416#readme",
-  "dependencies": {
-    "d3": "^7.6.1",
-    "d3-annotate": "^0.2.0"
-  },
   "devDependencies": {
     "lite-server": "^2.6.1"
   }
