@@ -35,3 +35,12 @@ body {
 
 .row .name {
 }
+
+.clickable {
+  cursor: pointer;
+  color: rgb(124, 135, 178);
+}
+
+.clickable:hover {
+  text-decoration: underline;
+}

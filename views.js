@@ -4,13 +4,13 @@ function showChampions(champions) {
 
   ChampionsSel.selectAll(".row")
     .append("div")
-    .attr("class", "year")
+    .attr("class", "year clickable")
     .text((d) => d.year)
     .on("click", yearClick);
 
   ChampionsSel.selectAll(".row")
     .append("div")
-    .attr("class", "name")
+    .attr("class", "name clickable")
     .text((d) => `${d.firstname} ${d.lastname}`.toUpperCase())
     .on("click", driverClick);
 }
@@ -32,7 +32,7 @@ function showYear(year, winners) {
 
   YearSel.selectAll(".row")
     .append("div")
-    .attr("class", "name")
+    .attr("class", "name clickable")
     .text(nameFn)
     .on("click", driverClick);
 }
@@ -49,7 +49,7 @@ function showDriver(driver, standings) {
 
   DriverSel.selectAll(".row")
     .append("div")
-    .attr("class", "year")
+    .attr("class", "year clickable")
     .text((d) => d.year)
     .on("click", yearClick);
 
