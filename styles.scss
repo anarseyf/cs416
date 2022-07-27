@@ -29,5 +29,9 @@ body {
   margin: 0.25em;
 }
 
+.row.standings {
+  grid-template-columns: repeat(3, 1fr);
+}
+
 .row .name {
 }

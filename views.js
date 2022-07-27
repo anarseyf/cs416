@@ -15,9 +15,13 @@ function showChampions(champions) {
     .on("click", driverClick);
 }
 
+const nameFn = (d) => `${d.firstname} ${d.lastname}`.toUpperCase();
+
 function showYear(year, winners) {
+  clear();
+  showHeader(year);
+
   const YearSel = d3.select("#Year");
-  YearSel.text("");
 
   YearSel.selectAll(".row").data(winners).enter().append("div").attr("class", "row");
 
@@ -29,6 +33,57 @@ function showYear(year, winners) {
   YearSel.selectAll(".row")
     .append("div")
     .attr("class", "name")
-    .text((d) => `${d.lastname}`.toUpperCase())
+    .text(nameFn)
     .on("click", driverClick);
+}
+
+function showDriver(driver, standings) {
+  clear();
+
+  const name = nameFn(driver);
+  showHeader(name);
+
+  const DriverSel = d3.select("#Driver");
+
+  DriverSel.selectAll(".row").data(standings).enter().append("div").attr("class", "row standings");
+
+  DriverSel.selectAll(".row")
+    .append("div")
+    .attr("class", "year")
+    .text((d) => d.year)
+    .on("click", yearClick);
+
+  DriverSel.selectAll(".row")
+    .append("div")
+    .attr("class", "name")
+    .text((d) => d.position);
+
+  DriverSel.selectAll(".row")
+    .append("div")
+    .attr("class", "name")
+    .text((d) => d.wins);
+}
+
+function showHeader(text) {
+  d3.select("#Header").text(text);
+}
+
+function clear() {
+  d3.select("#Header").text("");
+  d3.select("#Driver").text("");
+  d3.select("#Year").text("");
+}
+
+function yearClick(e, d) {
+  const winners = computeWinners(d.year);
+  console.log("Year:", d.year);
+  console.log("Winners", winners);
+  showYear(d.year, winners);
+}
+
+function driverClick(e, d) {
+  const driver = Index.Drivers.get(d.driverId);
+  console.log("Driver:", driver.lastname);
+  const standings = computeDriver(driver.driverId);
+  showDriver(driver, standings);
 }
