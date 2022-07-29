@@ -50,11 +50,15 @@ body {
 }
 .race::before {
   content: "⬤";
+  color: rgb(92, 92, 92);
   font-size: 0.5em;
 }
 .race:hover:before {
   // color: green;
 }
-.race.highlight {
+.race.highlight::before {
   color: green;
+}
+.race.highlight.year::before {
+  color: rgb(168, 110, 35);
 }
