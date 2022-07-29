@@ -22,7 +22,7 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 3fr 3fr;
   grid-template-rows: 1fr;
   gap: 1em;
   background-color: rgb(27, 29, 39);
@@ -43,4 +43,18 @@ body {
 
 .clickable:hover {
   text-decoration: underline;
+}
+
+.race {
+  display: inline-block;
+}
+.race::before {
+  content: "⬤";
+  font-size: 0.5em;
+}
+.race:hover:before {
+  // color: green;
+}
+.race.highlight {
+  color: green;
 }

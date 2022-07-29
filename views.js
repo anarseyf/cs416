@@ -1,4 +1,4 @@
-function showChampions(champions) {
+function showChampions(champions, racesByYear) {
   const ChampionsSel = d3.select("#Champions");
   ChampionsSel.selectAll(".row").data(champions).enter().append("div").attr("class", "row");
 
@@ -12,7 +12,31 @@ function showChampions(champions) {
     .append("div")
     .attr("class", "name clickable")
     .text((d) => `${d.firstname} ${d.lastname}`.toUpperCase())
-    .on("click", driverClick);
+    .on("click", (e, d) => highlightRacesWonBy(d.driverId));
+
+  ChampionsSel.selectAll(".row")
+    .append("div")
+    .attr("class", "races")
+    .each(function (d) {
+      showRacesForYear(this, racesByYear.get(d.year));
+    });
+}
+
+function highlightRacesWonBy(driverId) {
+  console.log(`highlightRacesWonBy ${driverId}`);
+
+  const racesMap = computeRaceIdsWonBy(driverId);
+
+  d3.select("#Champions")
+    .selectAll(".race")
+    .classed("highlight", (d) => racesMap[d.raceId]);
+}
+
+function showRacesForYear(_this, races) {
+  races.sort((a, b) => a.round - b.round);
+
+  d3.select(_this).selectAll(".race").data(races).enter().append("div").attr("class", "race");
+  // .text("/");
 }
 
 const nameFn = (d) => `${d.firstname} ${d.lastname}`.toUpperCase();

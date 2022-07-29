@@ -20,13 +20,14 @@ const Index = {};
 
 window.onload = async () => {
   await readData();
-
   computeIndexes();
 
   const champions = computeChampions();
+  const racesByYear = computeRacesByYear();
+  console.log("Races by year", racesByYear.get(2021));
+  // console.log("Champions[0]", champions[0]);
 
-  console.log("Champions[0]", champions[0]);
-  showChampions(champions);
+  showChampions(champions, racesByYear);
 };
 
 function parseRow(d) {
@@ -106,6 +107,18 @@ function computeWinners(year) {
   return winners;
 }
 
+function computeRaceIdsWonBy(driverId) {
+  const list = Data.Results.filter((r) => r.driverId === driverId)
+    .filter((r) => r.position === 1)
+    .map((r) => r.raceId);
+
+  const map = {};
+  list.forEach((raceId) => {
+    map[raceId] = true;
+  });
+  return map;
+}
+
 function computeDriver(driverId) {
   const lastRaceIds = computeLastRaceIds();
 
@@ -122,6 +135,10 @@ function computeDriver(driverId) {
   console.log(`driverStandings for ${driverId}:`, driverStandings);
 
   return driverStandings;
+}
+
+function computeRacesByYear() {
+  return d3.group(Data.Races, (d) => d.year);
 }
 
 function lastRace(races) {
