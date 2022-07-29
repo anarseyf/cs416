@@ -2,12 +2,21 @@
   <link rel="stylesheet" href="./styles.scss" />
   <script src="./d3.min.js"></script>
   <script src="./models.js"></script>
-  <script src="./views.js"></script>
+  <script src="./scene1.js"></script>
+  <script src="./scene2.js"></script>
 </head>
 
 <body>
-  <div id="Header" class="page"></div>
-  <div id="Year" class="page"></div>
-  <div id="Driver" class="page"></div>
-  <div id="Champions" class="page"></div>
+  <div id="Sidebar">
+    <div class="headline"></div>
+    <div class="content"></div>
+  </div>
+  <div id="Main">
+    <div id="Header" class="page"></div>
+    <div id="Year" class="page"></div>
+    <div id="Driver" class="page"></div>
+
+    <div id="Scene1" class="scene"></div>
+    <div id="Scene2" class="scene"></div>
+  </div>
 </body>

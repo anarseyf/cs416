@@ -1,3 +1,11 @@
+:root {
+  --text: rgb(92, 92, 92);
+  --clickable: rgb(124, 135, 178);
+  --orange: rgb(168, 110, 35);
+  --green: green;
+  --row-bg: rgb(27, 29, 39);
+}
+
 @font-face {
   font-family: "JetBrains";
   src: local("JetBrains Mono"), url("./fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf");
@@ -11,8 +19,30 @@ body {
   margin: 2em;
 }
 
+#Main {
+  width: 65%;
+}
+
+#Sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 30%;
+  // background-color: rgb(61, 61, 61);
+  padding: 2em;
+  border-left: 2px solid var(--orange);
+  overflow-y: scroll;
+}
+
 .page {
   border: 1px solid #888;
+  margin: 1em;
+  padding: 1em;
+}
+
+.scene {
+  border: 1px dotted #8ac;
   margin: 1em;
   padding: 1em;
 }
@@ -25,7 +55,7 @@ body {
   grid-template-columns: 1fr 3fr 3fr;
   grid-template-rows: 1fr;
   gap: 1em;
-  background-color: rgb(27, 29, 39);
+  background-color: var(--row-bg);
   margin: 0.25em;
 }
 
@@ -38,7 +68,7 @@ body {
 
 .clickable {
   cursor: pointer;
-  color: rgb(124, 135, 178);
+  color: var(--clickable);
 }
 
 .clickable:hover {
@@ -50,15 +80,18 @@ body {
 }
 .race::before {
   content: "⬤";
-  color: rgb(92, 92, 92);
+  color: var(--text);
   font-size: 0.5em;
 }
 .race:hover:before {
   // color: green;
 }
 .race.highlight::before {
-  color: green;
+  color: var(--green);
 }
 .race.highlight.year::before {
-  color: rgb(168, 110, 35);
+  color: var(--green);
+}
+
+.driver {
 }

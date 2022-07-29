@@ -24,7 +24,18 @@ window.onload = async () => {
 
   const champions = computeChampions();
 
-  showChampions(champions);
+  // Scene 1
+  // showChampions(champions);
+
+  // Scene 2
+  const index = Index.DriversByName;
+  const drivers = [
+    index.get("Michael").get("Schumacher"),
+    index.get("Sebastian").get("Vettel"),
+    index.get("Lewis").get("Hamilton"),
+  ];
+
+  showDrivers(drivers);
 };
 
 function parseRow(d) {
@@ -45,6 +56,11 @@ async function readData() {
 function computeIndexes() {
   Index.Races = d3.index(Data.Races, (r) => r.raceId);
   Index.Drivers = d3.index(Data.Drivers, (d) => d.driverId);
+  Index.DriversByName = d3.index(
+    Data.Drivers,
+    (d) => d.firstname,
+    (d) => d.lastname
+  );
   Index.RacesByYear = d3.group(Data.Races, (d) => d.year);
 }
 

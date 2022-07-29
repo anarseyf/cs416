@@ -1,23 +1,23 @@
 function showChampions(champions) {
-  const ChampionsSel = d3.select("#Champions");
-  ChampionsSel.selectAll(".row").data(champions).enter().append("div").attr("class", "row");
+  const Scene = d3.select("#Scene1");
+  Scene.selectAll(".row").data(champions).enter().append("div").attr("class", "row");
 
-  ChampionsSel.selectAll(".row")
+  Scene.selectAll(".row")
     .append("div")
     .attr("class", "year clickable")
     .text((d) => d.year)
     .on("click", yearClick);
 
-  ChampionsSel.selectAll(".row")
+  Scene.selectAll(".row")
     .append("div")
     .attr("class", "name clickable")
-    .text((d) => `${d.firstname} ${d.lastname}`.toUpperCase())
+    .text(nameFn)
     .on("click", (e, d) => {
       clearHighlights();
       highlightRacesWonBy(d.driverId);
     });
 
-  ChampionsSel.selectAll(".row")
+  Scene.selectAll(".row")
     .append("div")
     .attr("class", "races")
     .each(function (d) {
@@ -26,7 +26,7 @@ function showChampions(champions) {
 }
 
 function clearHighlights() {
-  d3.select("#Champions").selectAll(".race").classed("highlight", false);
+  d3.select("#Scene1").selectAll(".race").classed("highlight", false);
 }
 
 function highlightRacesWonBy(driverId, yearMaybe) {
@@ -34,7 +34,7 @@ function highlightRacesWonBy(driverId, yearMaybe) {
 
   console.log(`highlightRacesWonBy ${driverId} ${yearMaybe || ""}`, racesMap);
 
-  d3.select("#Champions")
+  d3.select("#Scene1")
     .selectAll(".race")
     .filter((d) => racesMap[d.raceId])
     .classed("highlight", true)
