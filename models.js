@@ -46,6 +46,8 @@ window.onload = async () => {
   showDrivers(drivers);
 
   showClearButton();
+
+  showYear(2016);
 };
 
 function parseRow(d) {
@@ -135,7 +137,7 @@ function computeWinnersForYear(year) {
   const races = Data.Races.filter((r) => r.year === year);
   const raceIds = races.map((r) => r.raceId);
 
-  console.log(`${races.length} races in ${year};\n`, races[0]);
+  // console.log(`${races.length} races in ${year};\n`, races[0]);
 
   const winners = Data.Results.filter((r) => raceIds.includes(r.raceId))
     .filter((r) => r.position === 1)
@@ -231,9 +233,9 @@ function lastRace(races) {
 }
 
 function computePointsForDriverAtRace(driverId, raceId) {
-  const standings = Index.StandingsByRace.get(raceId).filter((s) => s.driverId === driverId);
+  const standing = Index.StandingsByRace.get(raceId).filter((s) => s.driverId === driverId)[0];
 
-  return standings.map((s) => s.points);
+  return standing.points;
 }
 
 function computePointsForDriverAtRaces(driverId, raceIds) {

@@ -23,7 +23,7 @@ function showDrivers(drivers) {
     .map((d) => d.driverId)
     .map((driverId) => computeDriver(driverId, [TimelineMin, TimelineMax]));
 
-  console.log("driverTimelines", driverTimelines);
+  // console.log("driverTimelines", driverTimelines);
 
   Timelines.selectAll(".timeline")
     .data(driverTimelines)
@@ -65,7 +65,7 @@ function showDriverCareer(driver) {
   Headline.text(name);
 
   const standings = computeDriver(driver.driverId);
-  console.log(`Standings for ${name}:`, standings);
+  // console.log(`Standings for ${name}:`, standings);
 
   const raceWinsByYear = standings.map((s) => s.wins);
   const numRaceWins = raceWinsByYear.reduce((acc, v) => acc + v, 0);
@@ -101,7 +101,7 @@ function showDriverCareer(driver) {
     .attr("class", "name")
     .text((d) => (d.position === 0 ? "" : d.wins || "-"));
 
-  console.log(`>> raceWinsByYear: `, raceWinsByYear);
+  // console.log(`>> raceWinsByYear: `, raceWinsByYear);
 
   Content.selectAll(".row").append("div").attr("class", "wins").each(showWins);
 }
