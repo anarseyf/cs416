@@ -17,12 +17,7 @@ function showChampions(champions) {
       highlightRacesWonBy(d.driverId);
     });
 
-  Scene.selectAll(".row")
-    .append("div")
-    .attr("class", "races")
-    .each(function (d) {
-      showRacesForYear(this, d.year, d.driverId);
-    });
+  Scene.selectAll(".row").append("div").attr("class", "races").each(showRacesForYear);
 }
 
 function clearHighlights() {
@@ -41,11 +36,12 @@ function highlightRacesWonBy(driverId, yearMaybe) {
     .classed("year", !!yearMaybe);
 }
 
-function showRacesForYear(_this, year, driverId) {
+function showRacesForYear(d) {
+  const { year, driverId } = d;
   const races = Index.RacesByYear.get(year);
   races.sort((a, b) => a.round - b.round);
 
-  d3.select(_this).selectAll(".race").data(races).enter().append("div").attr("class", "race");
+  d3.select(this).selectAll(".race").data(races).enter().append("div").attr("class", "race");
   // .text("/");
 
   highlightRacesWonBy(driverId, year);

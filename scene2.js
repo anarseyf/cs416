@@ -30,9 +30,7 @@ function showDrivers(drivers) {
     .enter()
     .append("div")
     .attr("class", "timeline")
-    .each(function (d) {
-      showTimeline(this, d);
-    });
+    .each(showTimeline);
 }
 
 const opacityFn = (d) => {
@@ -43,8 +41,8 @@ const opacityFn = (d) => {
   return 1.0 - deficit * 0.1;
 };
 
-function showTimeline(_this, driverTimeline) {
-  d3.select(_this)
+function showTimeline(driverTimeline) {
+  d3.select(this)
     .selectAll(".timelineYear")
     .data(driverTimeline)
     .enter()
@@ -69,7 +67,8 @@ function showDriverCareer(driver) {
   const standings = computeDriver(driver.driverId);
   console.log(`Standings for ${name}:`, standings);
 
-  const numRaceWins = standings.map((s) => s.wins).reduce((acc, v) => acc + v, 0);
+  const raceWinsByYear = standings.map((s) => s.wins);
+  const numRaceWins = raceWinsByYear.reduce((acc, v) => acc + v, 0);
 
   const racesWon = computeWinsForDriver(driver.driverId);
   const numTitles = standings.filter((s) => s.position === 1).length;
@@ -90,6 +89,8 @@ function showDriverCareer(driver) {
     .text((d) => d.year)
     .on("click", yearClick);
 
+  Content.selectAll(".row").append("div").attr("class", "name").text(teamFn);
+
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
@@ -98,9 +99,16 @@ function showDriverCareer(driver) {
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
-    .text((d) => (d.position === 0 ? "" : d.wins));
+    .text((d) => (d.position === 0 ? "" : d.wins || "-"));
 
-  Content.selectAll(".row").append("div").attr("class", "name").text(teamFn);
+  console.log(`>> raceWinsByYear: `, raceWinsByYear);
+
+  Content.selectAll(".row").append("div").attr("class", "wins").each(showWins);
+}
+
+function showWins(d) {
+  const data = d3.range(d.wins);
+  d3.select(this).selectAll(".race").data(data).enter().append("div").attr("class", "race");
 }
 
 const teamFn = (d) => {
