@@ -154,6 +154,11 @@ function computeWinnersForYear(year) {
   return winners;
 }
 
+function computeWinnersByRoundForYear(year) {
+  const list = computeWinnersForYear(year);
+  return d3.index(list, (e) => e.round);
+}
+
 function computeRaceIdsWonBy(driverId, yearMaybe) {
   let list = Data.Results.filter((r) => r.driverId === driverId)
     .filter((r) => r.position === 1)

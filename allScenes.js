@@ -7,10 +7,14 @@ function clear() {
   d3.select("#Sidebar").selectAll(".sidebarItem").text("");
 }
 
-const nameFn = (d) => `${d.firstname} ${d.lastname}`.toUpperCase();
+const nameFn = (d) => `${d.firstname} ${d.lastname}`;
 
 function showHeader(text) {
   d3.select("#Sidebar .headline").text(text);
+}
+
+function showSubtitle(text) {
+  d3.select("#Sidebar .subtitle").text(text);
 }
 
 function showClearButton() {
