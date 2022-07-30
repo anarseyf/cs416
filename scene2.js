@@ -93,14 +93,17 @@ function showDriverCareer(driver) {
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
-    .text((d) => d.position);
+    .text((d) => (d.position === 0 ? "" : d.position));
 
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
-    .text((d) => d.wins);
+    .text((d) => (d.position === 0 ? "" : d.wins));
 
   Content.selectAll(".row").append("div").attr("class", "name").text(teamFn);
 }
 
-const teamFn = (d) => Index.Constructor.get(d.constructorId).name;
+const teamFn = (d) => {
+  const constructor = Index.Constructor.get(d.constructorId);
+  return constructor?.name ?? "";
+};
