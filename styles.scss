@@ -71,6 +71,10 @@ body {
   background-color: rgb(177, 161, 69);
   color: black;
 }
+.row.missing {
+  background-color: #111;
+  color: #555;
+}
 
 .row .name {
 }
@@ -102,5 +106,35 @@ body {
   color: var(--green);
 }
 
-.driver {
+#Scene2 {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 2rlh;
+  align-content: start;
+  justify-content: start;
+  gap: 0.5em;
+}
+
+.scene2item {
+  border: 1px dotted slateblue;
+}
+
+.champions {
+}
+
+.champion {
+}
+
+.timelines {
+}
+
+.timeline {
+  display: grid;
+  grid-template-columns: repeat(32, 6px); //minmax(6px, 1fr));
+  grid-template-rows: minmax(6px, 1fr);
+  gap: 0.25em;
+  overflow: hidden;
+}
+.timelineYear {
+  background-color: #333;
 }

@@ -84,7 +84,7 @@ function computeYearEndListAtPosition(position) {
       ...s,
       year: Index.Race.get(s.raceId).year,
     }))
-    .filter((d) => d.year > 2013);
+    .filter((d) => d.year > 1990);
 
   const list = leaderStandings.map(({ driverId, year, wins }) => {
     const { firstname, lastname } = Index.Driver.get(driverId);
@@ -165,9 +165,20 @@ function computeDriver(driverId) {
 
   driverStandings.sort((a, b) => a.year - b.year);
 
+  const allStandings = fillInMissingYears(driverStandings);
   console.log(`driverStandings for ${driverId}:`, driverStandings);
+  return allStandings;
+}
 
-  return driverStandings;
+function fillInMissingYears(standings) {
+  const years = standings.map((s) => s.year);
+  const [min, max] = d3.extent(years);
+  const allYears = d3.range(min, max + 1);
+  const allStandings = allYears.map((year) => {
+    const entry = standings.find((s) => s.year === year);
+    return entry || { year, position: 0, wins: 0 };
+  });
+  return allStandings;
 }
 
 function computeWinsForDriver(driverId) {

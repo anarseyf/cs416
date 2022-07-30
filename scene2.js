@@ -1,15 +1,29 @@
 function showDrivers(drivers) {
   const Scene = d3.select("#Scene2");
 
-  Scene.selectAll(".driver")
+  const Champions = Scene.select(".champions");
+  const Timelines = Scene.select(".timelines");
+
+  Champions.selectAll(".champion")
     .data(drivers)
     .enter()
     .append("div")
-    .attr("class", "driver clickable")
+    .attr("class", "champion clickable")
     .text(nameFn)
     .on("click", (e, d) => {
       showDriverCareer(d);
     });
+
+  const years = d3.range(1991, 2022);
+
+  const Timeline = Timelines.append("div").attr("class", "timeline");
+
+  Timeline.selectAll(".timelineYear")
+    .data(years)
+    .enter()
+    .append("div")
+    .attr("class", "timelineYear");
+  // .text(String);
 }
 
 function showDriverCareer(driver) {
@@ -35,7 +49,8 @@ function showDriverCareer(driver) {
     .enter()
     .append("div")
     .attr("class", "row scene2")
-    .classed("champion", (d) => d.position === 1);
+    .classed("champion", (d) => d.position === 1)
+    .classed("missing", (d) => d.position === 0);
 
   Content.selectAll(".row")
     .append("div")
