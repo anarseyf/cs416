@@ -60,7 +60,7 @@ body {
 }
 
 .row.scene2 {
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .row.scene3 {
@@ -125,12 +125,12 @@ body {
   // border: 1px dotted orange;
 }
 .timelineYear {
-  background-color: #555;
+  background-color: rgb(99, 67, 16);
   height: 10px;
 }
 
 .champion {
-  background-color: rgb(177, 161, 69) !important;
+  background-color: rgb(193, 168, 42) !important;
   color: black !important;
 }
 .missing {

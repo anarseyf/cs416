@@ -36,9 +36,9 @@ window.onload = async () => {
     index.get("Mika").get("Häkkinen"),
     index.get("Fernando").get("Alonso"),
     index.get("Kimi").get("Räikkönen"),
+    index.get("Lewis").get("Hamilton"),
     index.get("Jenson").get("Button"),
     index.get("Sebastian").get("Vettel"),
-    index.get("Lewis").get("Hamilton"),
     index.get("Nico").get("Rosberg"),
     index.get("Max").get("Verstappen"),
   ];
@@ -61,9 +61,11 @@ async function readData() {
   Data.Drivers = await d3.csv("./data/drivers.csv", parseRow);
   Data.Standings = await d3.csv("./data/driver_standings.csv", parseRow);
   Data.Results = await d3.csv("./data/results.csv", parseRow);
+  Data.Constructors = await d3.csv("./data/constructors.csv", parseRow);
 }
 
 function computeIndexes() {
+  // indexed
   Index.Race = d3.index(Data.Races, (r) => r.raceId);
   Index.Driver = d3.index(Data.Drivers, (d) => d.driverId);
   Index.DriverByName = d3.index(
@@ -71,8 +73,16 @@ function computeIndexes() {
     (d) => d.firstname,
     (d) => d.lastname
   );
+  Index.Constructor = d3.index(Data.Constructors, (c) => c.constructorId);
+
+  // grouped
   Index.RacesByYear = d3.group(Data.Races, (r) => r.year);
   Index.StandingsByRace = d3.group(Data.Standings, (s) => s.raceId);
+  Index.ResultsByRaceByDriver = d3.group(
+    Data.Results,
+    (r) => r.raceId,
+    (r) => r.driverId
+  );
 }
 
 function computeLastRaceIds() {
@@ -82,7 +92,6 @@ function computeLastRaceIds() {
   const lastRaceIds = lastRaces.map((r) => r.raceId);
   return lastRaceIds;
 }
-
 function computeYearEndListAtPosition(position) {
   const lastRaceIds = computeLastRaceIds();
 
@@ -165,16 +174,35 @@ function computeDriver(driverId, yearRangeMaybe) {
 
   const driverStandings = Data.Standings.filter((s) => lastRaceIds.includes(s.raceId))
     .filter((s) => s.driverId === driverId)
-    .map(({ position, wins, raceId }) => ({
-      year: Index.Race.get(raceId).year,
-      position,
-      wins,
-    }));
+    .map(({ position, wins, raceId }) => {
+      const year = Index.Race.get(raceId).year;
+
+      const constructor = Index.ResultsByRaceByDriver.get(raceId).get(driverId);
+      let constructorId = constructor?.[0].constructorId ?? -1;
+
+      if (constructorId === -1) {
+        const race = Index.Race.get(raceId);
+
+        constructorId = computeLastResultForDriverInYear(driverId, year)?.constructorId ?? -1;
+
+        console.log(
+          `constructorId for ${nameFn(Index.Driver.get(driverId))} @ ${race.year}/${race.name}:)`,
+          constructorId
+        );
+      }
+      return {
+        year,
+        position,
+        wins,
+        constructorId,
+      };
+    });
 
   driverStandings.sort((a, b) => a.year - b.year);
 
   const allStandings = fillInMissingYears(driverStandings, yearRangeMaybe);
-  console.log(`driverStandings for ${driverId}:`, driverStandings);
+  // console.log(`driverStandings for ${driverId}:`, driverStandings);
+
   return allStandings;
 }
 
@@ -210,4 +238,22 @@ function computePointsForDriverAtRace(driverId, raceId) {
 
 function computePointsForDriverAtRaces(driverId, raceIds) {
   return raceIds.map((raceId) => computePointsForDriverAtRace(driverId, raceId));
+}
+
+function computeLastResultForDriverInYear(driverId, year) {
+  // In a few cases drivers did not compete in the season's last race. We then look at their results in the last race they competed in to find out their team (constructor).
+
+  const raceIds = Index.RacesByYear.get(year)
+    .sort((a, b) => a.round - b.round)
+    .map((r) => r.raceId);
+
+  const results = raceIds.map((raceId) => Index.ResultsByRaceByDriver.get(raceId).get(driverId));
+
+  // console.log(
+  //   `Results for ${driverId} in ${year}:\n`,
+  //   results.map((r) => (r ? r.constructorId : "MISSING"))
+  // );
+
+  const known = results.filter(Boolean).map((rr) => (rr.length ? rr[0] : undefined));
+  return known[known.length - 1];
 }

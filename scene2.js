@@ -36,7 +36,10 @@ function showDrivers(drivers) {
 }
 
 const opacityFn = (d) => {
-  const deficit = Math.min(8, d.position - 1);
+  if (d.position === 0) {
+    return 1.0;
+  }
+  const deficit = Math.min(7, d.position - 1);
   return 1.0 - deficit * 0.1;
 };
 
@@ -60,9 +63,12 @@ function showDriverCareer(driver) {
   const Subtitle = Sidebar.select(".subtitle");
   const Content = Sidebar.select(".content");
 
-  Headline.text(nameFn(driver));
+  const name = nameFn(driver);
+  Headline.text(name);
 
   const standings = computeDriver(driver.driverId);
+  console.log(`Standings for ${name}:`, standings);
+
   const numRaceWins = standings.map((s) => s.wins).reduce((acc, v) => acc + v, 0);
 
   const racesWon = computeWinsForDriver(driver.driverId);
@@ -93,4 +99,8 @@ function showDriverCareer(driver) {
     .append("div")
     .attr("class", "name")
     .text((d) => d.wins);
+
+  Content.selectAll(".row").append("div").attr("class", "name").text(teamFn);
 }
+
+const teamFn = (d) => Index.Constructor.get(d.constructorId).name;
