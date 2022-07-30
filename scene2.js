@@ -11,8 +11,3 @@ function showDrivers(drivers) {
       showDriverCareer(d);
     });
 }
-
-function showDriverCareer(driver) {
-  const Sidebar = d3.select("#Sidebar");
-  Sidebar.select(".headline").text(nameFn(driver));
-}

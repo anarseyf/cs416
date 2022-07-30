@@ -63,6 +63,11 @@ body {
   grid-template-columns: repeat(3, 1fr);
 }
 
+.row.champion {
+  background-color: rgb(177, 161, 69);
+  color: black;
+}
+
 .row .name {
 }
 

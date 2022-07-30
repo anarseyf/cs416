@@ -32,7 +32,7 @@ function clearHighlights() {
 function highlightRacesWonBy(driverId, yearMaybe) {
   const racesMap = computeRaceIdsWonBy(driverId, yearMaybe);
 
-  console.log(`highlightRacesWonBy ${driverId} ${yearMaybe || ""}`, racesMap);
+  // console.log(`highlightRacesWonBy ${driverId} ${yearMaybe || ""}`, racesMap);
 
   d3.select("#Scene1")
     .selectAll(".race")
@@ -53,73 +53,47 @@ function showRacesForYear(_this, year, driverId) {
 
 const nameFn = (d) => `${d.firstname} ${d.lastname}`.toUpperCase();
 
-function showYear(year, winners) {
+function showYear(year) {
   clear();
   showHeader(year);
 
-  const YearSel = d3.select("#Year");
+  const races = Index.RacesByYear.get(year);
 
-  YearSel.selectAll(".row").data(winners).enter().append("div").attr("class", "row");
+  const champion = computeDriverForYearAtPosition(year, 1);
+  const runnerup = computeDriverForYearAtPosition(year, 2);
 
-  YearSel.selectAll(".row")
+  const Sidebar = d3.select("#Sidebar");
+  const Subtitle = Sidebar.select(".subtitle");
+  const text = `${nameFn(champion)} vs ${nameFn(runnerup)}`;
+  Subtitle.text(text);
+
+  console.log(`${year}: ${text}`);
+
+  const Content = Sidebar.select(".content");
+
+  Content.selectAll(".row").data(races).enter().append("div").attr("class", "row");
+
+  Content.selectAll(".row")
     .append("div")
     .attr("class", "year")
     .text((d) => d.round);
 
-  YearSel.selectAll(".row")
+  Content.selectAll(".row")
     .append("div")
-    .attr("class", "name clickable")
-    .text(nameFn)
-    .on("click", driverClick);
-}
-
-function showDriver(driver, standings) {
-  clear();
-
-  const name = nameFn(driver);
-  showHeader(name);
-
-  const DriverSel = d3.select("#Driver");
-
-  DriverSel.selectAll(".row").data(standings).enter().append("div").attr("class", "row standings");
-
-  DriverSel.selectAll(".row")
-    .append("div")
-    .attr("class", "year clickable")
-    .text((d) => d.year)
-    .on("click", yearClick);
-
-  DriverSel.selectAll(".row")
-    .append("div")
-    .attr("class", "name")
-    .text((d) => d.position);
-
-  DriverSel.selectAll(".row")
-    .append("div")
-    .attr("class", "name")
-    .text((d) => d.wins);
+    .attr("class", "")
+    .text((d) => d.name);
 }
 
 function showHeader(text) {
-  d3.select("#Header").text(text);
-}
-
-function clear() {
-  d3.select("#Header").text("");
-  d3.select("#Driver").text("");
-  d3.select("#Year").text("");
+  d3.select("#Sidebar .headline").text(text);
 }
 
 function yearClick(e, d) {
-  const winners = computeWinners(d.year);
-  console.log("Year:", d.year);
-  console.log("Winners", winners);
-  showYear(d.year, winners);
+  showYear(d.year);
 }
 
 function driverClick(e, d) {
   const driver = Index.Drivers.get(d.driverId);
   console.log("Driver:", driver.lastname);
-  const standings = computeDriver(driver.driverId);
-  showDriver(driver, standings);
+  showDriverCareer(driver);
 }

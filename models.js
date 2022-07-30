@@ -25,7 +25,7 @@ window.onload = async () => {
   const champions = computeChampions();
 
   // Scene 1
-  // showChampions(champions);
+  showChampions(champions);
 
   // Scene 2
   const index = Index.DriversByName;
@@ -72,19 +72,18 @@ function computeLastRaceIds() {
   return lastRaceIds;
 }
 
-function computeChampions() {
+function computeYearEndListAtPosition(position) {
   const lastRaceIds = computeLastRaceIds();
 
   const leaderStandings = Data.Standings.filter((s) => lastRaceIds.includes(s.raceId))
-    .filter((s) => s.position === 1)
+    .filter((s) => s.position === position)
     .map((s) => ({
       ...s,
       year: Index.Races.get(s.raceId).year,
-    }));
+    }))
+    .filter((d) => d.year > 2013);
 
-  console.log("leaderStandings[0]", leaderStandings[0]);
-
-  const champions = leaderStandings.map(({ driverId, year, wins }) => {
+  const list = leaderStandings.map(({ driverId, year, wins }) => {
     const { firstname, lastname } = Index.Drivers.get(driverId);
     return {
       year,
@@ -95,16 +94,28 @@ function computeChampions() {
     };
   });
 
-  champions.sort((a, b) => b.year - a.year);
+  list.sort((a, b) => b.year - a.year);
 
-  return champions;
+  // console.log(`Position ${position}:`, list);
+
+  return list;
 }
 
-function computeWinners(year) {
+function computeChampions() {
+  return computeYearEndListAtPosition(1);
+}
+
+function computeDriverForYearAtPosition(year, position) {
+  const list = computeYearEndListAtPosition(position);
+  const entry = list.find((e) => e.year === year);
+  return Index.Drivers.get(entry.driverId);
+}
+
+function computeWinnersForYear(year) {
   const races = Data.Races.filter((r) => r.year === year);
   const raceIds = races.map((r) => r.raceId);
 
-  console.log(`${races.length} races in ${year}:`, races[0]);
+  console.log(`${races.length} races in ${year};\n`, races[0]);
 
   const winners = Data.Results.filter((r) => raceIds.includes(r.raceId))
     .filter((r) => r.position === 1)
@@ -154,6 +165,14 @@ function computeDriver(driverId) {
   console.log(`driverStandings for ${driverId}:`, driverStandings);
 
   return driverStandings;
+}
+
+function computeWinsForDriver(driverId) {
+  const wins = Data.Results.filter((r) => r.driverId === driverId)
+    .filter((r) => r.position === 1)
+    .map((r) => r.raceId);
+
+  return wins;
 }
 
 function lastRace(races) {
