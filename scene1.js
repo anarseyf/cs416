@@ -51,49 +51,12 @@ function showRacesForYear(_this, year, driverId) {
   highlightRacesWonBy(driverId, year);
 }
 
-const nameFn = (d) => `${d.firstname} ${d.lastname}`.toUpperCase();
-
-function showYear(year) {
-  clear();
-  showHeader(year);
-
-  const races = Index.RacesByYear.get(year);
-
-  const champion = computeDriverForYearAtPosition(year, 1);
-  const runnerup = computeDriverForYearAtPosition(year, 2);
-
-  const Sidebar = d3.select("#Sidebar");
-  const Subtitle = Sidebar.select(".subtitle");
-  const text = `${nameFn(champion)} vs ${nameFn(runnerup)}`;
-  Subtitle.text(text);
-
-  console.log(`${year}: ${text}`);
-
-  const Content = Sidebar.select(".content");
-
-  Content.selectAll(".row").data(races).enter().append("div").attr("class", "row");
-
-  Content.selectAll(".row")
-    .append("div")
-    .attr("class", "year")
-    .text((d) => d.round);
-
-  Content.selectAll(".row")
-    .append("div")
-    .attr("class", "")
-    .text((d) => d.name);
-}
-
-function showHeader(text) {
-  d3.select("#Sidebar .headline").text(text);
-}
-
 function yearClick(e, d) {
   showYear(d.year);
 }
 
 function driverClick(e, d) {
-  const driver = Index.Drivers.get(d.driverId);
+  const driver = Index.Driver.get(d.driverId);
   console.log("Driver:", driver.lastname);
   showDriverCareer(driver);
 }

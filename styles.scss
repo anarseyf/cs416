@@ -20,7 +20,7 @@ body {
 }
 
 #Main {
-  width: 65%;
+  width: 59%;
 }
 
 #Sidebar {
@@ -28,9 +28,9 @@ body {
   right: 0;
   top: 0;
   height: 100%;
-  width: 30%;
+  width: 40%;
   // background-color: rgb(61, 61, 61);
-  padding: 2em;
+  // padding: 2em;
   border-left: 2px solid var(--orange);
   overflow-y: scroll;
 }
@@ -59,8 +59,12 @@ body {
   margin: 0.25em;
 }
 
-.row.standings {
+.row.scene2 {
   grid-template-columns: repeat(3, 1fr);
+}
+
+.row.scene3 {
+  grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
 }
 
 .row.champion {
