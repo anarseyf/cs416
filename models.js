@@ -31,8 +31,16 @@ window.onload = async () => {
   const index = Index.DriverByName;
   const drivers = [
     index.get("Michael").get("Schumacher"),
+    index.get("Damon").get("Hill"),
+    index.get("Jacques").get("Villeneuve"),
+    index.get("Mika").get("Häkkinen"),
+    index.get("Fernando").get("Alonso"),
+    index.get("Kimi").get("Räikkönen"),
+    index.get("Jenson").get("Button"),
     index.get("Sebastian").get("Vettel"),
     index.get("Lewis").get("Hamilton"),
+    index.get("Nico").get("Rosberg"),
+    index.get("Max").get("Verstappen"),
   ];
 
   showDrivers(drivers);
@@ -152,7 +160,7 @@ function computeRaceIdsWonBy(driverId, yearMaybe) {
   return map;
 }
 
-function computeDriver(driverId) {
+function computeDriver(driverId, yearRangeMaybe) {
   const lastRaceIds = computeLastRaceIds();
 
   const driverStandings = Data.Standings.filter((s) => lastRaceIds.includes(s.raceId))
@@ -165,14 +173,14 @@ function computeDriver(driverId) {
 
   driverStandings.sort((a, b) => a.year - b.year);
 
-  const allStandings = fillInMissingYears(driverStandings);
+  const allStandings = fillInMissingYears(driverStandings, yearRangeMaybe);
   console.log(`driverStandings for ${driverId}:`, driverStandings);
   return allStandings;
 }
 
-function fillInMissingYears(standings) {
+function fillInMissingYears(standings, yearRangeMaybe) {
   const years = standings.map((s) => s.year);
-  const [min, max] = d3.extent(years);
+  const [min, max] = yearRangeMaybe || d3.extent(years);
   const allYears = d3.range(min, max + 1);
   const allStandings = allYears.map((year) => {
     const entry = standings.find((s) => s.year === year);

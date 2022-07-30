@@ -67,15 +67,6 @@ body {
   grid-template-columns: 1fr 4fr 1fr 1fr 1fr;
 }
 
-.row.champion {
-  background-color: rgb(177, 161, 69);
-  color: black;
-}
-.row.missing {
-  background-color: #111;
-  color: #555;
-}
-
 .row .name {
 }
 
@@ -109,7 +100,7 @@ body {
 #Scene2 {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  grid-template-rows: 2rlh;
+  // grid-template-rows: 2rlh;
   align-content: start;
   justify-content: start;
   gap: 0.5em;
@@ -122,19 +113,27 @@ body {
 .champions {
 }
 
-.champion {
-}
-
 .timelines {
 }
 
 .timeline {
   display: grid;
   grid-template-columns: repeat(32, 6px); //minmax(6px, 1fr));
-  grid-template-rows: minmax(6px, 1fr);
+  grid-template-rows: 20px;
   gap: 0.25em;
   overflow: hidden;
+  // border: 1px dotted orange;
 }
 .timelineYear {
-  background-color: #333;
+  background-color: #555;
+  height: 10px;
+}
+
+.champion {
+  background-color: rgb(177, 161, 69) !important;
+  color: black !important;
+}
+.missing {
+  background-color: #222 !important;
+  color: #555 !important;
 }
