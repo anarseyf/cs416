@@ -32,8 +32,13 @@ function resetScene3() {
   Scene.selectAll(".scene3row").classed("selected", false);
 }
 
-const rivalryHtml = (d1, d2) =>
-  `<span class="bright">${nameFn(d1)}</span> vs <span class="bright">${nameFn(d2)}</span>`;
+const rivalryHtml = (d1, d2) => {
+  const p1 = `<span class='champion'>&nbsp</span>`;
+  const p2 = `<span class='runnerup'>&nbsp</span>`;
+  return `${p1} <span class="bright">${nameFn(d1)}</span> vs ${p2} <span class="bright">${nameFn(
+    d2
+  )}</span>`;
+};
 
 function rivalryHtmlForYear(year) {
   const [d1, d2] = rivalsForYear(year);
@@ -179,7 +184,7 @@ function showLegendForYear(year, drivers) {
 
 function showLegendRow(d) {
   const { name, wins, color } = d;
-  const text = `won by ${d.name}`;
+  const html = `won by <span class='bright'>${d.name}</span>`;
 
   d3.select(this)
     .append("div")
@@ -187,7 +192,7 @@ function showLegendRow(d) {
   d3.select(this)
     .append("div")
     .attr("class", (d) => `race ${d.color}`);
-  d3.select(this).append("div").text(text);
+  d3.select(this).append("div").html(html);
 }
 
 const indexToColor = (i) => (i === 0 ? "gold" : i === 1 ? "silver" : "other");

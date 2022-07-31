@@ -91,10 +91,14 @@ function showYearAxis() {
     .enter()
     .append("div")
     .attr("class", "tick")
-    // .text((d) => (d % 5 === 0 ? d : ""));
+    .text(tickFn)
     // .text(String)
     .on("mouseenter", (e, d) => highlightYear(d))
     .on("mouseleave", () => highlightYear(undefined));
+}
+
+function tickFn(d) {
+  return (d - 1) % 10 === 0 ? d : "";
 }
 
 function highlightIntersection(dMaybe) {
@@ -122,7 +126,12 @@ function highlightAxis(yearMaybe) {
   // console.log("highlightAxis:", yearMaybe);
   const Content = d3.select("#Scene2 .content");
   // Content.selectAll(".tick").classed("highlighted", (d) => d === yearMaybe);
-  Content.selectAll(".tick").text((d) => (d === yearMaybe ? d : ""));
+  const Ticks = Content.selectAll(".tick");
+  if (yearMaybe) {
+    Ticks.text((d) => (d === yearMaybe ? d : ""));
+  } else {
+    Ticks.text(tickFn);
+  }
 }
 
 function highlightDriver(driverIdMaybe) {
@@ -138,7 +147,7 @@ function highlightTimeline(driverIdMaybe) {
 function showIntersectionTooltip(dMaybe) {
   const Tooltip = d3.select("#Scene2 .tooltip");
 
-  let html = "Hover on the heatmap to learn more.";
+  let html = "";
   if (dMaybe) {
     // console.log("tooltip:", dMaybe);
     const { year, driverId, position } = dMaybe;

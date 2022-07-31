@@ -3,7 +3,7 @@ const Descriptions = {
     description:
       "<p>Learn about the history of the <a target='_blank' href='https://www.formula1.com/'>Formula 1 World Championship</a>, the drivers who have reached the top in the sport, and what makes up a season of racing with this interactive document.</p>" +
       "<p>The explorer consists of three sections: <a href='#Scene1'>Drivers' Champions 1950-2021</a>, <a href='#Scene2'>Champions of the Modern Era</a>, and <a href='#Scene3'>Epic Seasons</a>.</p>" +
-      "<p>As you explore each section, details will be revealed in the sidebar.</p>",
+      "<p>As you explore each section, details will be shown in the sidebar.</p>",
     legend:
       "<p>Throughout this page:</p>" +
       "<p></span> Grand Prix (an individual race): <span class='race'></span><br>" +
@@ -24,10 +24,10 @@ const Descriptions = {
   },
   Scene2: {
     description:
-      "<p>These are the drivers who have won at least one World title from 1994 to today. Their careers are summarized in this interactive timeline view.</p>" +
-      "<p><span class='bright'>Mouse-over on a timeline</span> to see where each driver placed in a given season.</p>" +
-      "<p><span class='bright'>Click on a driver name</span> to reveal a detailed look at their career.</p>",
-    legend: "<span class='champion'>&nbsp;</span><span> = championship won</span>",
+      "<p>These are the drivers who have won at least one World title from 1994 to today. Their careers are summarized in this interactive timeline.</p>" +
+      "<p><span class='bright'>Mouse-over on the timeline</span> to see where each driver placed in a given season.</p>" +
+      "<p><span class='bright'>Click on a driver</span> to take a closer look at their career.</p>",
+    legend: "Championship won: <span class='champion'>&nbsp;</span>",
     drivers: {
       "Michael Schumacher": "*** *** ***",
       "Damon Hill": "*** *** ***",
@@ -45,7 +45,7 @@ const Descriptions = {
   },
   Scene3: {
     description:
-      "<p>These were some of the most memorable seasons in recent years. Each was contested down to the last race.</p>" +
+      "<p>These were some of the most memorable seasons in recent years. Each title was contested all the way to the last race.</p>" +
       "<p>The driver with the most points at the end of a season is that year's World Champion. The points system has changed over the years, with the current scheme awarding <span class='bright'>25 points for a race win</span>, 18 points for second place, and on down to a single point for 10<sup>th</sup>.</p>" +
       "<p><span class='bright'>Click on a year</span> to see the race-by-race rivalry between the eventual champion and the runner-up.</p>",
     legend: "",
