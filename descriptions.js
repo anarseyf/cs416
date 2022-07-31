@@ -69,9 +69,9 @@ const Descriptions = {
   },
   Credits: {
     dataNotes:
-      "<a target='_blank' href='https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020'>Data source</a>, <a target='_blank' href='https://github.com/anarseyf/cs416'>Source code</a>.",
+      "<a target='_blank' href='https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020'>Source dataset</a>; <a target='_blank' href='https://github.com/anarseyf/cs416'>source code</a>.",
     author:
-      "<p>Created by <a target='_blank' href='https://www.linkedin.com/in/anarseyf/'>Anar Seyf</a> in 2022.</p>" +
-      "<p>CS 416 Data Visualization @ UIUC <a target='_blank' href='https://cs.illinois.edu/academics/graduate/professional-mcs/online-master-computer-science-data-science'>MCS-DS</a>.</p>",
+      "<p>CS 416 Data Visualization @ UIUC <a target='_blank' href='https://cs.illinois.edu/academics/graduate/professional-mcs/online-master-computer-science-data-science'>MCS-DS</a>.</p>" +
+      "<p>Created by <a target='_blank' href='https://www.linkedin.com/in/anarseyf/'>Anar Seyf</a> in 2022.</p>",
   },
 };
