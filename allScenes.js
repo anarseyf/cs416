@@ -1,6 +1,10 @@
 function clear() {
   console.log("Clear");
-  d3.select("#Sidebar").selectAll(".sidebarItem").text("");
+  const Sidebar = d3.select("#Sidebar");
+  Sidebar.selectAll(".sidebarItem").text("");
+
+  const sidebarHint = Descriptions.Sidebar.hint;
+  Sidebar.select(".subtitle").html(sidebarHint);
 }
 
 function resetAll() {
@@ -46,16 +50,16 @@ function showSceneDescriptions() {
     DataNotes = Credits.select(".dataNotes"),
     Author = Credits.select(".author");
 
-  Desc0.text(Descriptions.Intro.description);
+  Desc0.html(Descriptions.Intro.description);
   Legend0.html(Descriptions.Intro.legend);
-  Desc1.text(Descriptions.Scene1.description);
+  Desc1.html(Descriptions.Scene1.description);
   Legend1.html(Descriptions.Scene1.legend);
-  Desc2.text(Descriptions.Scene2.description);
+  Desc2.html(Descriptions.Scene2.description);
   Legend2.html(Descriptions.Scene2.legend);
-  Desc3.text(Descriptions.Scene3.description);
+  Desc3.html(Descriptions.Scene3.description);
   Legend3.html(Descriptions.Scene3.legend);
   DataNotes.html(Descriptions.Credits.dataNotes);
-  Author.text(Descriptions.Credits.author);
+  Author.html(Descriptions.Credits.author);
 
   console.log("Legend: ", Descriptions.Scene1.legend);
 }

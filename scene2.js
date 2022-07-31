@@ -222,7 +222,7 @@ function showDriverCareer(driver) {
     .append("div")
     .attr("class", "name right")
     .classed("champion", (d) => d.position === 1)
-    .text((d) => (d.position === 0 ? "" : d.position));
+    .html((d) => (d.position === 0 ? "" : withSuffux(d.position)));
 
   Content.selectAll(".row").append("div").attr("class", "pointsChart").each(showPosition);
 

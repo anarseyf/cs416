@@ -45,7 +45,7 @@ window.onload = async () => {
   prepareScene1(champions);
   prepareScene2(drivers);
   prepareScene3(years);
-
+  clear();
   // showClearButton();
 
   const Alonso = Index.DriverByName.get("Fernando").get("Alonso");
@@ -313,4 +313,8 @@ function suffix(n) {
     3: "rd",
   };
   return suffixes[r] || "th";
+}
+
+function withSuffux(n) {
+  return `${n}<sup>${suffix(n)}</sup>`;
 }

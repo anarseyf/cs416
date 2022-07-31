@@ -1,7 +1,8 @@
-const YearLimit = 2019; // 0
+// const YearLimit = 2019;
+const MinYear = 0;
 
 function prepareScene1(champions) {
-  const filtered = champions.filter((d) => d.year > YearLimit);
+  const filtered = champions.filter((d) => d.year >= MinYear);
 
   const Scene = d3.select("#Scene1");
   const Header = Scene.select(".header");

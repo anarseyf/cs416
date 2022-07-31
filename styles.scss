@@ -74,6 +74,10 @@ body {
   margin-bottom: 2em;
 }
 
+h1 {
+  margin: 2em auto;
+}
+
 .tooltip.row {
   display: block;
   text-align: right;
@@ -113,7 +117,7 @@ body {
 }
 
 .row.scene2 {
-  grid-template-columns: 2fr 3fr 1fr 3fr 1fr 3fr;
+  grid-template-columns: 2fr 3fr 1.5fr 2.5fr 1fr 3fr;
 }
 .header > .row.scene2 {
   grid-template-columns: 2fr 3fr 4fr 4fr;
@@ -142,7 +146,8 @@ body {
 .legend.row {
   display: block;
   // background-color: var(--legend);
-  background-color: var(--highlight-bg);
+  // background-color: var(--highlight-bg);
+  background-color: var(--transparent);
   margin-top: 1em;
   // border: 1px dotted orangered;
   // width: 100%;
@@ -279,10 +284,10 @@ a {
   display: inline-block;
   width: 20px;
 }
-.legend > * {
-  display: inline-block;
-  margin: 0.25em;
-}
+// .legend > * {
+//   display: inline-block;
+//   margin: 0.25em;
+// }
 
 .pointsChart {
   position: relative;
@@ -313,6 +318,7 @@ a {
 
 .right {
   text-align: right;
+  font-weight: bold;
 }
 
 #Credits {

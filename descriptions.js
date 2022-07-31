@@ -1,15 +1,24 @@
 const Descriptions = {
   Intro: {
-    description: "Explore the history of the Formula 1 World Championship",
+    description:
+      "<p>Explore the history of the Formula 1 World Championship</p>" +
+      "<p>As you explore the data, details will be revealed in the sidebar.</p>",
     legend:
       "<p>Throughout this page:</p>" +
       "<p></span> Grand Prix (an individual race): <span class='race'></span><br>" +
       "Season (a year of races): <span class='championship'>&nbsp;</span><br>" +
-      "Gold color indicates a title win: <span class='champion'>&nbsp;</span> or a race win: <span class='race gold'></span></p>",
+      "Gold color indicates a title win: <span class='champion'>&nbsp;</span><br>" +
+      "or a race win: <span class='race gold'></span></p>",
+  },
+  Sidebar: {
+    hint: "<em>Select a name or a year on the left. Details will be revealed here.</em>",
   },
   Scene1: {
     description:
-      "The F1 championship started in 1950 with only 8 races. Today's seasons feature over 20 races.",
+      "<p>The F1 Driver's championship started in 1950 with only 7 races. The seasons have grown steadily over the years, and today the Formula 1 championship features over 20 races each year.</p>" +
+      "<p>Start by exploring the timeline of all completed championships between 1950 and today. Notice that some years (like <span class='bright'>2012</span>) are highly competitive, while others (like <span class='bright'>2013</span>) are dominated by a single driver.</p>" +
+      "<p>Click on the name of a world champion to reveal their win pattern over the years, as well as career statistics in the sidebar.</p>" +
+      "<p>Then scroll down to the next section to take a detailed look at a few World Champions of the last three decades.</p>",
     legend: "<span class='race highlight thatyear'></span> races won by that year's champion",
   },
   Scene2: {
