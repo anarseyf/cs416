@@ -1,9 +1,5 @@
 function clear() {
   console.log("Clear");
-
-  d3.select("#Header").text("");
-  d3.select("#Driver").text("");
-  d3.select("#Year").text("");
   d3.select("#Sidebar").selectAll(".sidebarItem").text("");
 }
 

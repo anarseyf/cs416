@@ -147,6 +147,7 @@ function showDriverCareer(driver) {
   const Sidebar = d3.select("#Sidebar");
   const Headline = Sidebar.select(".headline");
   const Subtitle = Sidebar.select(".subtitle");
+  const Description = Sidebar.select(".description");
   const Content = Sidebar.select(".content");
 
   const name = nameFn(driver);
@@ -161,7 +162,9 @@ function showDriverCareer(driver) {
   const racesWon = computeWinsForDriver(driver.driverId);
   const numTitles = standings.filter((s) => s.position === 1).length;
 
-  Subtitle.text(`${numTitles} Titles, ${racesWon.length} (${numRaceWins}) Race wins`);
+  showDriverDescription(driver);
+  const text = computeDriverSummaryText(driver.driverId);
+  Subtitle.text(text);
 
   Content.selectAll(".row")
     .data(standings)
@@ -193,8 +196,6 @@ function showDriverCareer(driver) {
   // console.log(`>> raceWinsByYear: `, raceWinsByYear);
 
   Content.selectAll(".row").append("div").attr("class", "wins").each(showWins);
-
-  showDriverDescription(driver);
 }
 
 function showDriverDescription(driver) {

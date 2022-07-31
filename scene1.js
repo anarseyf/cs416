@@ -18,6 +18,7 @@ function prepareScene1(champions) {
     .text(nameFn)
     .on("click", (e, d) => {
       clearHighlights();
+      showDriverStats(d.driverId);
       highlightRacesWonBy(d.driverId);
     });
 
@@ -26,6 +27,17 @@ function prepareScene1(champions) {
 
 function clearHighlights() {
   d3.select("#Scene1 .content").selectAll(".race").classed("highlight", false);
+}
+
+function showDriverStats(driverId) {
+  clear();
+
+  const text = computeDriverSummaryText(driverId);
+  const driver = Index.Driver.get(driverId);
+  const name = nameFn(driver);
+  showHeader(name);
+  const Subtitle = d3.select("#Sidebar .subtitle");
+  Subtitle.text(text);
 }
 
 function highlightRacesWonBy(driverId, yearMaybe) {

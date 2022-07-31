@@ -278,6 +278,25 @@ function computeIntersectionText(year, driverId, position) {
   return `${name} ${pos} the ${year} Championship`;
 }
 
+function computeDriverSummaryText(driverId) {
+  const driver = Index.Driver.get(driverId);
+  const name = nameFn(driver);
+
+  const standings = computeDriver(driverId);
+  const raceWinsByYear = standings.map((s) => s.wins);
+
+  const numTitles = standings.filter((s) => s.position === 1).length;
+  const numWins = d3.sum(raceWinsByYear);
+  const numSeasons = standings.filter((s) => s.position !== 0).length;
+
+  const titlesStr = `${numTitles} ${numTitles === 1 ? "title" : "titles"}`;
+
+  const racesStr = `${numWins} ${numWins === 1 ? "race" : "races"}`;
+  const seasonsStr = `${numSeasons} ${numSeasons === 1 ? "season" : "seasons"}`;
+
+  return `${name} won ${titlesStr} and ${racesStr} across ${seasonsStr}.`;
+}
+
 function positionString(position) {
   return position === 0
     ? "did not participate in"
