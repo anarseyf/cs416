@@ -1,5 +1,5 @@
 const TimelineMin = 1991,
-  TimelineMax = 2022;
+  TimelineMax = 2021;
 
 function prepareScene2(drivers) {
   const Content = d3.select("#Scene2 .content");
@@ -154,13 +154,6 @@ function showDriverCareer(driver) {
   Headline.text(name);
 
   const standings = computeDriver(driver.driverId);
-  // console.log(`Standings for ${name}:`, standings);
-
-  const raceWinsByYear = standings.map((s) => s.wins);
-  const numRaceWins = raceWinsByYear.reduce((acc, v) => acc + v, 0);
-
-  const racesWon = computeWinsForDriver(driver.driverId);
-  const numTitles = standings.filter((s) => s.position === 1).length;
 
   showDriverDescription(driver);
   const text = computeDriverSummaryText(driver.driverId);
