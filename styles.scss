@@ -80,6 +80,16 @@ h1 {
   margin: 2em auto;
 }
 
+h2 {
+  margin-top: 1em;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--brighttext);
+}
+
 .tooltip.row {
   display: block;
   text-align: right;
@@ -163,6 +173,7 @@ h1 {
 
 .clickable,
 a {
+  text-decoration: none;
   cursor: pointer;
   color: var(--clickable);
 }
