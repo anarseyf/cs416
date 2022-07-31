@@ -1,16 +1,16 @@
 function prepareScene3(years) {
-  const Scene = d3.select("#Scene3");
+  const Content = d3.select("#Scene3 .content");
 
-  Scene.selectAll(".row")
+  Content.selectAll(".row")
     .data(years)
     .enter()
     .append("div")
     .attr("class", "row scene3row")
     .on("click", (e, d) => showYear(d));
 
-  Scene.selectAll(".row").append("div").attr("class", "year clickable").text(String);
+  Content.selectAll(".row").append("div").attr("class", "year clickable").text(String);
 
-  Scene.selectAll(".row")
+  Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
     .text((d) => Descriptions.Scene3.years[d].summary);

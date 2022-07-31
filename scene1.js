@@ -4,7 +4,18 @@ function prepareScene1(champions) {
   const filtered = champions.filter((d) => d.year > YearLimit);
 
   const Scene = d3.select("#Scene1");
+  const Header = Scene.select(".header");
   const Content = Scene.select(".content");
+
+  const headerData = ["Year", "Champion", "Races"];
+  Header.append("div")
+    .attr("class", "row scene1")
+    .selectAll("div")
+    .data(headerData)
+    .enter()
+    .append("div")
+    .text(String);
+
   Content.selectAll(".row").data(filtered).enter().append("div").attr("class", "row");
 
   Content.selectAll(".row")
@@ -20,9 +31,41 @@ function prepareScene1(champions) {
       clearHighlights();
       showDriverStats(d.driverId);
       highlightRacesWonBy(d.driverId);
+      showLegendForDriver(d);
     });
 
+  showDefaultHighlights();
+
+  Scene.select(".reset").on("click", resetScene1);
+}
+
+function showDefaultHighlights() {
+  const Content = d3.select("#Scene1 .content");
+  Content.selectAll(".races").remove();
+
   Content.selectAll(".row").append("div").attr("class", "races").each(showRacesForYear);
+}
+
+function resetScene1() {
+  const Scene = d3.select("#Scene1");
+  Scene.select(".reset").classed("hidden", true);
+  showLegendForDriver(undefined);
+  showDefaultHighlights();
+  clear();
+}
+
+function showLegendForDriver(driverMaybe) {
+  let html = Descriptions.Scene1.legend;
+  if (driverMaybe) {
+    const name = nameFn(driverMaybe);
+    html = `<span class='race gold'></span> = races won by ${name}`;
+  }
+
+  const Scene = d3.select("#Scene1");
+  Legend = Scene.select(".legend");
+  Legend.html(html);
+
+  Scene.select(".reset").classed("hidden", !driverMaybe);
 }
 
 function clearHighlights() {
@@ -49,7 +92,7 @@ function highlightRacesWonBy(driverId, yearMaybe) {
     .selectAll(".race")
     .filter((d) => racesMap[d.raceId])
     .classed("highlight", true)
-    .classed("year", !!yearMaybe);
+    .classed("thatyear", !!yearMaybe);
 }
 
 function showRacesForYear(d) {

@@ -46,7 +46,7 @@ window.onload = async () => {
   prepareScene2(drivers);
   prepareScene3(years);
 
-  showClearButton();
+  // showClearButton();
 
   const Alonso = Index.DriverByName.get("Fernando").get("Alonso");
   // showDriverCareer(Alonso);

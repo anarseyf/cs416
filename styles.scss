@@ -1,10 +1,11 @@
 :root {
   --text: rgb(149, 149, 149);
   --brighttext: rgb(186, 186, 186);
+  --darktext: rgb(84, 84, 84);
   --line: rgb(84, 84, 84);
   --clickable: rgb(124, 135, 178);
   --orange: rgb(168, 110, 35);
-  --green: green;
+  --win: rgb(69, 90, 168);
   --row-bg: rgb(27, 29, 39);
 
   --gold: rgb(193, 168, 42);
@@ -45,6 +46,7 @@ body {
   padding: 2%;
   border-left: 1px solid var(--text);
   overflow-y: scroll;
+  margin-bottom: 2em;
 }
 
 .sidebarItem {
@@ -95,12 +97,21 @@ body {
   background-color: var(--legend);
 }
 
+.row.scene1 {
+  // grid-template-columns:
+}
+.header > .row.scene1 {
+  // grid-template-columns: 2fr 3fr 4fr 4fr;
+  gap: 0.5em;
+  justify-items: start;
+}
+
 .row.scene2 {
   grid-template-columns: 2fr 3fr 1fr 3fr 1fr 3fr;
 }
 .header > .row.scene2 {
   grid-template-columns: 2fr 3fr 4fr 4fr;
-  gap: 0;
+  gap: 0.5em;
   justify-items: start;
 }
 
@@ -109,11 +120,17 @@ body {
 }
 .header > .row.scene3 {
   grid-template-columns: 2fr 5fr 3fr;
-  gap: 0;
+  gap: 0.5em;
   justify-items: start;
 }
 .header > .row.scene3 > div {
   // margin-right: 1em;
+}
+.sidebarItem.header {
+  padding-bottom: 0;
+}
+.hidden {
+  opacity: 0;
 }
 
 .legend.row {
@@ -145,17 +162,17 @@ a {
 }
 .race::before {
   content: "⬤";
-  color: var(--text);
+  color: var(--darktext);
   font-size: 0.3em;
 }
 .race:hover:before {
   // color: green;
 }
 .race.highlight::before {
-  color: var(--green);
+  color: var(--gold);
 }
-.race.highlight.year::before {
-  color: var(--green);
+.race.highlight.thatyear::before {
+  color: var(--win);
 }
 .race.gold::before {
   color: var(--gold);

@@ -6,7 +6,7 @@ const Descriptions = {
   Scene1: {
     description:
       "The F1 championship started in 1950 with only 8 races. Today's seasons feature over 20 races.",
-    legend: "<span class='race gold'></span> = race won by that year's champion",
+    legend: "<span class='race highlight thatyear'></span> = race won by that year's champion",
   },
   Scene2: {
     description: "World champions from 1994 to today. Click on a name to learn more.",
