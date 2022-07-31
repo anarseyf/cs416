@@ -55,9 +55,9 @@ function showTimeline(_this, timeline) {
     .classed("missing", (d) => d.position === 0)
     .style("opacity", opacityFn)
     .on("mouseenter", (e, d) => {
-      highlightIntersection(d.year, d.driverId);
+      highlightIntersection(d);
     })
-    .on("mouseleave", () => highlightIntersection(undefined, undefined));
+    .on("mouseleave", () => highlightIntersection(undefined));
 }
 
 function showYearAxis() {
@@ -84,10 +84,12 @@ function showYearAxis() {
     .on("mouseleave", () => highlightYear(undefined));
 }
 
-function highlightIntersection(yearMaybe, driverIdMaybe) {
-  highlightYearAxis(yearMaybe);
+function highlightIntersection(dMaybe) {
+  const { yearMaybe, driverIdMaybe } = dMaybe || {};
+  highlightAxis(yearMaybe);
   highlightDriver(driverIdMaybe);
   highlightEither(yearMaybe, driverIdMaybe);
+  showIntersectionTooltip(dMaybe);
 }
 
 function highlightEither(yearMaybe, driverIdMaybe) {
@@ -103,7 +105,7 @@ function highlightYear(yearMaybe) {
   Content.selectAll(".timelineYear").classed("highlighted", (d) => d.year === yearMaybe);
 }
 
-function highlightYearAxis(yearMaybe) {
+function highlightAxis(yearMaybe) {
   const Content = d3.select("#Scene2 .content");
   Content.selectAll(".tick").classed("highlighted", (d) => d === yearMaybe);
 }
@@ -116,6 +118,19 @@ function highlightDriver(driverIdMaybe) {
 function highlightTimeline(driverIdMaybe) {
   const Content = d3.select("#Scene2 .content");
   Content.selectAll(".timelineYear").classed("highlighted", (d) => d.driverId === driverIdMaybe);
+}
+
+function showIntersectionTooltip(dMaybe) {
+  const Tooltip = d3.select("#Scene2 .tooltip");
+
+  let text = "Hover on the heatmap to learn more.";
+  if (dMaybe) {
+    // console.log("tooltip:", dMaybe);
+    const { year, driverId, position } = dMaybe;
+    text = computeIntersectionText(year, driverId, position);
+  }
+
+  Tooltip.text(text);
 }
 
 const opacityFn = (d) => {

@@ -51,12 +51,19 @@ body {
 
 .scene {
   // border: 1px dotted #8ac;
-  margin: 1em;
+  margin: 1em auto;
   // padding: 1em;
 }
 
 .scene > .description {
   margin-bottom: 2em;
+}
+
+.scene > .tooltip {
+  height: 3em;
+  width: 100%;
+  border: 1px dotted purple;
+  overflow: hidden;
 }
 
 #champions {

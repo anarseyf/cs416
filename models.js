@@ -269,3 +269,29 @@ function computeLastResultForDriverInYear(driverId, year) {
   const known = results.filter(Boolean).map((rr) => (rr.length ? rr[0] : undefined));
   return known[known.length - 1];
 }
+
+function computeIntersectionText(year, driverId, position) {
+  const driver = Index.Driver.get(driverId);
+  const name = nameFn(driver);
+  const pos = positionString(position);
+
+  return `${name} ${pos} the ${year} Championship`;
+}
+
+function positionString(position) {
+  return position === 0
+    ? "did not participate in"
+    : position === 1
+    ? "won"
+    : `placed ${position}${suffix(position)} in`;
+}
+
+function suffix(n) {
+  const r = n % 10;
+  const suffixes = {
+    1: "st",
+    2: "nd",
+    3: "rd",
+  };
+  return suffixes[r] || "th";
+}
