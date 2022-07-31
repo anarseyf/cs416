@@ -31,6 +31,7 @@ function prepareScene1(champions) {
     .on("click", nameClick);
 
   showDefaultHighlights();
+  showLegendForDriver(undefined);
 
   Scene.select(".reset").on("click", resetAll);
 }
@@ -65,8 +66,8 @@ function showLegendForDriver(driverMaybe) {
   }
 
   const Scene = d3.select("#Scene1");
-  Legend = Scene.select(".legend");
-  Legend.html(html);
+  const Legends = Scene.selectAll(".legend.eitherside");
+  Legends.html(html);
 
   Scene.select(".reset").classed("hidden", !driverMaybe);
 }

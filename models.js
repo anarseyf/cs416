@@ -39,7 +39,7 @@ window.onload = async () => {
     index.get("Max").get("Verstappen"),
   ];
 
-  const years = [2008, 2012, 2016, 2021];
+  const years = [2007, 2008, 2012, 2016, 2021];
 
   showSceneDescriptions();
   prepareScene1(champions);
@@ -245,7 +245,7 @@ function lastRace(races) {
 function computePointsForDriverAtRace(driverId, raceId) {
   const standing = Index.StandingsByRace.get(raceId).filter((s) => s.driverId === driverId)[0];
 
-  return standing.points;
+  return standing?.points ?? 0;
 }
 
 function computePointsForDriverAtRaces(driverId, raceIds) {

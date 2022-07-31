@@ -75,7 +75,7 @@ function showHeaderForYear() {
   const Sidebar = d3.select("#Sidebar");
   const Header = Sidebar.select(".header");
 
-  const headerData = ["Round", "Race", "Points"];
+  const headerData = ["Round", "Race", "Points total"];
   Header.append("div")
     .attr("class", "row scene3")
     .selectAll("div")

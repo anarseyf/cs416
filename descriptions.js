@@ -1,8 +1,9 @@
 const Descriptions = {
   Intro: {
     description:
-      "<p>Explore the history of the Formula 1 World Championship</p>" +
-      "<p>As you explore the data, details will be revealed in the sidebar.</p>",
+      "<p>Learn about the history of the <a target='_blank' href='https://www.formula1.com/'>Formula 1 World Championship</a>, the drivers who have reached the top in the sport, and what makes up a season of racing with this interactive document.</p>" +
+      "<p>The explorer consists of three sections: <a href='#Scene1'>Drivers' Champions 1950-2021</a>, <a href='#Scene2'>Champions of the Modern Era</a>, and <a href='#Scene3'>Epic Seasons</a>.</p>" +
+      "<p>As you explore each section, details will be revealed in the sidebar.</p>",
     legend:
       "<p>Throughout this page:</p>" +
       "<p></span> Grand Prix (an individual race): <span class='race'></span><br>" +
@@ -11,11 +12,11 @@ const Descriptions = {
       "or a race win: <span class='race gold'></span></p>",
   },
   Sidebar: {
-    hint: "<em>Select a name or a year on the left. Details will be revealed here.</em>",
+    hint: "<em>Select a name or a year in each section. Details will be revealed here.</em>",
   },
   Scene1: {
     description:
-      "<p>The F1 Driver's championship started in 1950 with only 7 races. The seasons have grown steadily over the years, and today the Formula 1 championship features over 20 races each year.</p>" +
+      "<p>The F1 Drivers' Championship started in 1950 with only 7 races. The seasons have grown steadily over the years, and today the Formula 1 championship features over 20 races each year.</p>" +
       "<p>Start by exploring the timeline of all completed championships between 1950 and today. Notice that some years (like <span class='bright'>2012</span>) are highly competitive, while others (like <span class='bright'>2013</span>) are dominated by a single driver.</p>" +
       "<p><span class='bright'>Click on the name</span> of a world champion to reveal their win pattern over the years, as well as career statistics in the sidebar.</p>" +
       "<p>In the <a href='#Scene2'>next section</a> we'll take a closer look at the World Champions of the last three decades.</p>",
@@ -45,7 +46,8 @@ const Descriptions = {
   Scene3: {
     description:
       "<p>These were some of the most memorable seasons in recent years. Each was contested down to the last race.</p>" +
-      "<p><span class='bright'>Click on a year</span> to show the race-by-race rivalry between the eventual champion and the runner-up.</p>",
+      "<p>The driver with the most points at the end of a season is that year's World Champion. The points system has changed over the years, with the current scheme awarding <span class='bright'>25 points for a race win</span>, 18 points for second place, and on down to a single point for 10<sup>th</sup>.</p>" +
+      "<p><span class='bright'>Click on a year</span> to see the race-by-race rivalry between the eventual champion and the runner-up.</p>",
     legend: "",
     years: {
       2012: {
