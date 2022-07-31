@@ -47,7 +47,9 @@ window.onload = async () => {
 
   showClearButton();
 
-  showYear(2016);
+  // showYear(2016);
+  const Alonso = Index.DriverByName.get("Fernando").get("Alonso");
+  showDriverCareer(Alonso);
 };
 
 function parseRow(d) {

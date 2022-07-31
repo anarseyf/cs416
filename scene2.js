@@ -170,6 +170,8 @@ function showDriverCareer(driver) {
     .attr("class", "name")
     .text((d) => (d.position === 0 ? "" : d.position));
 
+  Content.selectAll(".row").append("div").attr("class", "pointsChart").each(showPosition);
+
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
@@ -178,6 +180,20 @@ function showDriverCareer(driver) {
   // console.log(`>> raceWinsByYear: `, raceWinsByYear);
 
   Content.selectAll(".row").append("div").attr("class", "wins").each(showWins);
+}
+
+const positionWidthFn = (position) => {
+  const fraction = Math.max(0, 11 - position) / 10;
+  return `${100 * fraction}%`;
+};
+
+function showPosition(d) {
+  if (!d.position) {
+    return;
+  }
+
+  const width = positionWidthFn(d.position);
+  d3.select(this).append("div").attr("class", "points").style("width", width);
 }
 
 function showWins(d) {
