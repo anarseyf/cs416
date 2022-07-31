@@ -39,7 +39,7 @@ window.onload = async () => {
     index.get("Max").get("Verstappen"),
   ];
 
-  const years = [2012, 2016, 2021];
+  const years = [2005, 2008, 2012, 2016, 2021];
 
   showSceneDescriptions();
   prepareScene1(champions);
@@ -51,7 +51,7 @@ window.onload = async () => {
   const Alonso = Index.DriverByName.get("Fernando").get("Alonso");
   // showDriverCareer(Alonso);
 
-  showYear(2012);
+  // showYear(2012);
 };
 
 function parseRow(d) {
@@ -197,7 +197,7 @@ function computeDriver(driverId, yearRangeMaybe) {
 
         constructorId = computeLastResultForDriverInYear(driverId, year)?.constructorId ?? -1;
 
-        console.log(
+        console.warn(
           `constructorId for ${nameFn(Index.Driver.get(driverId))} @ ${race.year}/${race.name}:)`,
           constructorId
         );
@@ -270,12 +270,12 @@ function computeLastResultForDriverInYear(driverId, year) {
   return known[known.length - 1];
 }
 
-function computeIntersectionText(year, driverId, position) {
+function computeIntersectionHtml(year, driverId, position) {
   const driver = Index.Driver.get(driverId);
   const name = nameFn(driver);
-  const pos = positionString(position);
+  const pos = positionHtml(position);
 
-  return `${name} ${pos} the ${year} championship.`;
+  return `<span class="bright">${name}</span> ${pos} the ${year} championship.`;
 }
 
 function computeDriverSummaryHtml(driverId) {
@@ -297,7 +297,7 @@ function computeDriverSummaryHtml(driverId) {
   return `${name} won <span class='champion'>${titlesStr}</span> and <span class='race gold'></span>${racesStr} across ${seasonsStr}.`;
 }
 
-function positionString(position) {
+function positionHtml(position) {
   return position === 0
     ? "did not participate in"
     : position === 1

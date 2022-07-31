@@ -27,16 +27,19 @@ function prepareScene1(champions) {
     .append("div")
     .attr("class", "name clickable")
     .text(nameFn)
-    .on("click", (e, d) => {
-      clearHighlights();
-      showDriverStats(d.driverId);
-      highlightRacesWonBy(d.driverId);
-      showLegendForDriver(d);
-    });
+    .on("click", nameClick);
 
   showDefaultHighlights();
 
-  Scene.select(".reset").on("click", resetScene1);
+  Scene.select(".reset").on("click", resetAll);
+}
+
+function nameClick(e, d) {
+  resetAll();
+  clearHighlights();
+  showDriverStats(d.driverId);
+  highlightRacesWonBy(d.driverId);
+  showLegendForDriver(d);
 }
 
 function showDefaultHighlights() {
@@ -51,14 +54,13 @@ function resetScene1() {
   Scene.select(".reset").classed("hidden", true);
   showLegendForDriver(undefined);
   showDefaultHighlights();
-  clear();
 }
 
 function showLegendForDriver(driverMaybe) {
   let html = Descriptions.Scene1.legend;
   if (driverMaybe) {
     const name = nameFn(driverMaybe);
-    html = `<span class='race gold'></span> races won by ${name}`;
+    html = `<span class='race gold'></span> races won by <span class="bright">${name}</span>`;
   }
 
   const Scene = d3.select("#Scene1");
@@ -105,10 +107,6 @@ function showRacesForYear(d) {
   // .text("/");
 
   highlightRacesWonBy(driverId, year);
-}
-
-function yearClick(e, d) {
-  showYear(d.year);
 }
 
 function driverClick(e, d) {

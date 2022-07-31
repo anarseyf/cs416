@@ -215,7 +215,7 @@ a {
 }
 .scene3row:hover,
 .scene3row.selected {
-  background-color: #555;
+  background-color: var(--highlight-bg);
 }
 
 .timeline {
@@ -308,4 +308,14 @@ a {
 
 .right {
   text-align: right;
+}
+
+#Credits {
+  margin-top: 4em;
+  background-color: var(--highlight-bg);
+  padding: 1em;
+}
+
+.bright {
+  color: var(--brighttext);
 }

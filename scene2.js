@@ -49,14 +49,14 @@ function prepareScene2(drivers) {
       showTimeline(this, d.timeline);
     });
 
-  d3.select("#Scene2 .reset").on("click", resetScene2);
+  d3.select("#Scene2 .reset").on("click", resetAll);
 
   showYearAxis();
   showIntersectionTooltip();
 }
 
 function showTimeline(_this, timeline) {
-  console.log(">> timeline:", timeline[0]);
+  // console.log(">> timeline:", timeline[0]);
 
   d3.select(_this)
     .selectAll(".timelineYear")
@@ -138,14 +138,14 @@ function highlightTimeline(driverIdMaybe) {
 function showIntersectionTooltip(dMaybe) {
   const Tooltip = d3.select("#Scene2 .tooltip");
 
-  let text = "Hover on the heatmap to learn more.";
+  let html = "Hover on the heatmap to learn more.";
   if (dMaybe) {
     // console.log("tooltip:", dMaybe);
     const { year, driverId, position } = dMaybe;
-    text = computeIntersectionText(year, driverId, position);
+    html = computeIntersectionHtml(year, driverId, position);
   }
 
-  Tooltip.text(text);
+  Tooltip.html(html);
 }
 
 const opacityFn = (d) => {
@@ -158,7 +158,7 @@ const opacityFn = (d) => {
 
 function resetScene2() {
   d3.select("#Scene2 .reset").classed("hidden", true);
-  clear();
+  highlightChampionRow(undefined);
 }
 
 function highlightChampionRow(driver) {
@@ -171,6 +171,7 @@ function highlightChampionRow(driver) {
 }
 
 function showDriverCareer(driver) {
+  resetAll();
   clear();
 
   d3.select("#Scene2 .reset").classed("hidden", false);

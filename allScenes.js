@@ -3,14 +3,21 @@ function clear() {
   d3.select("#Sidebar").selectAll(".sidebarItem").text("");
 }
 
-const nameFn = (d) => `${d.firstname} ${d.lastname}`;
-
-function showHeader(text) {
-  d3.select("#Sidebar .headline").text(text);
+function resetAll() {
+  resetScene1();
+  resetScene2();
+  resetScene3();
+  clear();
 }
 
-function showSubtitle(text) {
-  d3.select("#Sidebar .subtitle").text(text);
+const nameFn = (d) => `${d.firstname} ${d.lastname}`;
+
+function showHeader(textOrHtml) {
+  d3.select("#Sidebar .headline").html(textOrHtml);
+}
+
+function showSubtitle(textOrHtml) {
+  d3.select("#Sidebar .subtitle").html(textOrHtml);
 }
 
 function showClearButton() {

@@ -1,5 +1,15 @@
 function prepareScene3(years) {
+  const Header = d3.select("#Scene3 .header");
   const Content = d3.select("#Scene3 .content");
+
+  const headerData = ["Year", "Main rivalry"];
+  Header.append("div")
+    .attr("class", "row scene3row")
+    .selectAll("div")
+    .data(headerData)
+    .enter()
+    .append("div")
+    .text(String);
 
   Content.selectAll(".row")
     .data(years)
@@ -10,22 +20,43 @@ function prepareScene3(years) {
 
   Content.selectAll(".row").append("div").attr("class", "year clickable").text(String);
 
-  Content.selectAll(".row")
-    .append("div")
-    .attr("class", "name")
-    .text((d) => Descriptions.Scene3.years[d].summary);
+  Content.selectAll(".row").append("div").attr("class", "name").html(rivalryHtmlForYear);
+
+  d3.select("#Scene3 .reset").on("click", resetAll);
+}
+
+function resetScene3() {
+  // console.log("resetScene3");
+  const Scene = d3.select("#Scene3");
+  Scene.select(".reset").classed("hidden", true);
+  Scene.selectAll(".scene3row").classed("selected", false);
+}
+
+const rivalryHtml = (d1, d2) =>
+  `<span class="bright">${nameFn(d1)}</span> vs <span class="bright">${nameFn(d2)}</span>`;
+
+function rivalryHtmlForYear(year) {
+  const [d1, d2] = rivalsForYear(year);
+  return rivalryHtml(d1, d2);
+}
+
+function rivalsForYear(year) {
+  const d1 = computeDriverForYearAtPosition(year, 1);
+  const d2 = computeDriverForYearAtPosition(year, 2);
+
+  return [d1, d2];
 }
 
 function showYear(year) {
+  resetAll();
   clear();
   showHeader(year);
 
   console.log("Show ", year);
 
-  const driver1 = computeDriverForYearAtPosition(year, 1);
-  const driver2 = computeDriverForYearAtPosition(year, 2);
+  const [driver1, driver2] = rivalsForYear(year);
 
-  const subtitle = `${nameFn(driver1)} vs ${nameFn(driver2)}`;
+  const subtitle = rivalryHtml(driver1, driver2);
   showSubtitle(subtitle);
 
   const drivers = [driver1, driver2];
@@ -33,6 +64,11 @@ function showYear(year) {
   showTableForYear(year, drivers);
   showLegendForYear(year, drivers);
   showDescriptionForYear(year);
+
+  const Scene = d3.select("#Scene3");
+  Scene.select(".reset").classed("hidden", false);
+
+  Scene.selectAll(".scene3row").classed("selected", (d) => d === year);
 }
 
 function showHeaderForYear() {
@@ -170,4 +206,8 @@ function showPointsChart(d) {
     .append("div")
     .attr("class", pointsClassFn)
     .style("width", (d) => pointsWidthFn(d, max));
+}
+
+function yearClick(e, d) {
+  showYear(d.year);
 }
