@@ -148,6 +148,7 @@ function showDriverCareer(driver) {
   const Headline = Sidebar.select(".headline");
   const Subtitle = Sidebar.select(".subtitle");
   const Description = Sidebar.select(".description");
+  const Header = Sidebar.select(".header");
   const Content = Sidebar.select(".content");
 
   const name = nameFn(driver);
@@ -158,6 +159,15 @@ function showDriverCareer(driver) {
   showDriverDescription(driver);
   const text = computeDriverSummaryText(driver.driverId);
   Subtitle.text(text);
+
+  const headerData = ["Year", "Team", "Position", "Races won"];
+  Header.append("div")
+    .attr("class", "row scene2")
+    .selectAll("div")
+    .data(headerData)
+    .enter()
+    .append("div")
+    .text(String);
 
   Content.selectAll(".row")
     .data(standings)
@@ -177,6 +187,7 @@ function showDriverCareer(driver) {
   Content.selectAll(".row")
     .append("div")
     .attr("class", "name")
+    .classed("champion", (d) => d.position === 1)
     .text((d) => (d.position === 0 ? "" : d.position));
 
   Content.selectAll(".row").append("div").attr("class", "pointsChart").each(showPosition);

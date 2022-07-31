@@ -29,9 +29,24 @@ function showYear(year) {
   showSubtitle(subtitle);
 
   const drivers = [driver1, driver2];
+  showHeaderForYear();
   showTableForYear(year, drivers);
   showLegendForYear(year, drivers);
   showDescriptionForYear(year);
+}
+
+function showHeaderForYear() {
+  const Sidebar = d3.select("#Sidebar");
+  const Header = Sidebar.select(".header");
+
+  const headerData = ["Round", "Race", "Points"];
+  Header.append("div")
+    .attr("class", "row scene3")
+    .selectAll("div")
+    .data(headerData)
+    .enter()
+    .append("div")
+    .text(String);
 }
 
 function showDescriptionForYear(year) {

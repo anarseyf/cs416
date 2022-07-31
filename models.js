@@ -119,7 +119,7 @@ function computeYearEndListAtPosition(position) {
     };
   });
 
-  list.sort((a, b) => b.year - a.year);
+  list.sort((a, b) => a.year - b.year);
 
   // console.log(`Position ${position}:`, list);
 
@@ -275,7 +275,7 @@ function computeIntersectionText(year, driverId, position) {
   const name = nameFn(driver);
   const pos = positionString(position);
 
-  return `${name} ${pos} the ${year} Championship`;
+  return `${name} ${pos} the ${year} Championship.`;
 }
 
 function computeDriverSummaryText(driverId) {

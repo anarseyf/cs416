@@ -1,13 +1,20 @@
 :root {
   --text: rgb(149, 149, 149);
+  --brighttext: rgb(186, 186, 186);
+  --line: rgb(84, 84, 84);
   --clickable: rgb(124, 135, 178);
   --orange: rgb(168, 110, 35);
   --green: green;
   --row-bg: rgb(27, 29, 39);
+
   --gold: rgb(193, 168, 42);
+  --darkgold: rgb(93, 78, 7);
   --silver: rgb(134, 136, 143);
   --bronze: rgb(101, 62, 30);
   --other: rgb(45, 65, 88);
+
+  --legend: rgba(0, 0, 0, 0);
+  --tooltip: rgba(0, 0, 0, 0);
 }
 
 @font-face {
@@ -24,7 +31,8 @@ body {
 }
 
 #Main {
-  width: 55%;
+  width: 50%;
+  overflow-x: hidden;
 }
 
 #Sidebar {
@@ -59,10 +67,13 @@ body {
   margin-bottom: 2em;
 }
 
-.scene > .tooltip {
+.tooltip.row {
+  display: block;
+  text-align: right;
   height: 3em;
-  width: 100%;
-  border: 1px dotted purple;
+  // width: 100%;
+  // border: 1px dotted purple;
+  background-color: var(--tooltip);
   overflow: hidden;
 }
 
@@ -71,24 +82,49 @@ body {
 
 .row {
   display: grid;
-  grid-template-columns: 1fr 3fr 3fr;
+  grid-template-columns: 1fr 3fr 4fr;
   grid-template-rows: 1fr;
-  gap: 1em;
+  gap: 0.5em;
   background-color: var(--row-bg);
   margin: 0.25em;
   padding: auto 0.5em;
 }
 
+.header > .row {
+  border-bottom: 1px solid var(--line);
+  background-color: var(--legend);
+}
+
 .row.scene2 {
-  grid-template-columns: 1fr 3fr 1fr 2fr 1fr 3fr;
+  grid-template-columns: 2fr 3fr 1fr 3fr 1fr 3fr;
+}
+.header > .row.scene2 {
+  grid-template-columns: 2fr 3fr 4fr 4fr;
+  gap: 0;
+  justify-items: start;
 }
 
 .row.scene3 {
-  grid-template-columns: 1fr 1fr 4fr 3fr;
+  grid-template-columns: 1fr 1fr 5fr 3fr;
+}
+.header > .row.scene3 {
+  grid-template-columns: 2fr 5fr 3fr;
+  gap: 0;
+  justify-items: start;
+}
+.header > .row.scene3 > div {
+  // margin-right: 1em;
 }
 
-.row.legend {
-  grid-template-columns: 1fr 1fr 7fr;
+.legend.row {
+  display: block;
+  background-color: var(--legend);
+  margin-top: 1em;
+  // border: 1px dotted orangered;
+  // width: 100%;
+  padding-left: 20%;
+  grid-template-columns: 1fr;
+  text-align: right;
 }
 
 .row .name {
@@ -121,7 +157,6 @@ a {
 .race.highlight.year::before {
   color: var(--green);
 }
-
 .race.gold::before {
   color: var(--gold);
 }
@@ -198,13 +233,25 @@ a {
   background-color: #444;
 }
 
-.champion {
-  background-color: var(--gold) !important;
-  color: black !important;
+.sidebarItem .row.champion {
+  background-color: var(--darkgold);
+  color: var(--brighttext);
 }
 .missing {
   background-color: #222 !important;
   color: #555 !important;
+}
+.timelineYear.champion {
+  background-color: var(--gold);
+}
+.legend .champion {
+  background-color: var(--gold);
+  display: inline-block;
+  width: 20px;
+}
+.legend > * {
+  display: inline-block;
+  margin: 0.25em;
 }
 
 .pointsChart {
@@ -212,7 +259,6 @@ a {
   padding: 5px;
 }
 .points {
-  // background-color: rgb(100, 100, 100, 0.2);
   // width: 100%;
   height: 100%;
   box-sizing: border-box;
@@ -229,4 +275,8 @@ a {
 }
 .points.bronze {
   border-color: var(--bronze);
+}
+
+.row.scene2 .points {
+  background-color: #333;
 }

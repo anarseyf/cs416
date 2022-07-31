@@ -6,9 +6,11 @@ const Descriptions = {
   Scene1: {
     description:
       "The F1 championship started in 1950 with only 8 races. Today's seasons feature over 20 races.",
+    legend: "<span class='race gold'></span> = race won by that year's champion",
   },
   Scene2: {
     description: "World champions from 1994 to today. Click on a name to learn more.",
+    legend: "<span class='champion'>&nbsp;</span><span> = championship won</span>",
     drivers: {
       "Michael Schumacher": "*** *** ***",
       "Damon Hill": "*** *** ***",
@@ -26,6 +28,7 @@ const Descriptions = {
   },
   Scene3: {
     description: "These were the most memorable seasons in recent years. Click to learn more.",
+    legend: "",
     years: {
       2012: {
         summary: "2012 season summary",

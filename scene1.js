@@ -1,4 +1,4 @@
-const YearLimit = 2016; // 0
+const YearLimit = 2006; // 0
 
 function prepareScene1(champions) {
   const filtered = champions.filter((d) => d.year > YearLimit);
@@ -45,7 +45,7 @@ function highlightRacesWonBy(driverId, yearMaybe) {
 
   // console.log(`highlightRacesWonBy ${driverId} ${yearMaybe || ""}`, racesMap);
 
-  d3.select("#Scene1")
+  d3.select("#Scene1 .content")
     .selectAll(".race")
     .filter((d) => racesMap[d.raceId])
     .classed("highlight", true)

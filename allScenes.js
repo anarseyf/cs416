@@ -29,18 +29,26 @@ function showSceneDescriptions() {
   Credits = d3.select("#Credits");
 
   const Desc0 = Intro.select(".description"),
-    Legend = Intro.select(".legend"),
+    Legend0 = Intro.select(".legend"),
     Desc1 = Scene1.select(".description"),
+    Legend1 = Scene1.select(".legend"),
     Desc2 = Scene2.select(".description"),
-    Desc3 = Scene3.select(".description");
-  DataNotes = Credits.select(".dataNotes");
-  Author = Credits.select(".author");
+    Legend2 = Scene2.select(".legend"),
+    Desc3 = Scene3.select(".description"),
+    Legend3 = Scene3.select(".legend"),
+    DataNotes = Credits.select(".dataNotes"),
+    Author = Credits.select(".author");
 
   Desc0.text(Descriptions.Intro.description);
-  Legend.text(Descriptions.Intro.legend);
+  Legend0.html(Descriptions.Intro.legend);
   Desc1.text(Descriptions.Scene1.description);
+  Legend1.html(Descriptions.Scene1.legend);
   Desc2.text(Descriptions.Scene2.description);
+  Legend2.html(Descriptions.Scene2.legend);
   Desc3.text(Descriptions.Scene3.description);
+  Legend3.html(Descriptions.Scene3.legend);
   DataNotes.html(Descriptions.Credits.dataNotes);
   Author.text(Descriptions.Credits.author);
+
+  console.log("Legend: ", Descriptions.Scene1.legend);
 }
