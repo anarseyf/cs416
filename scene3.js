@@ -92,7 +92,7 @@ function showDescriptionForYear(year) {
   const defaultText = `${year} Formula 1 Season`;
   const text = Descriptions.Scene3.years[year]?.description ?? "";
 
-  Description.text(text || defaultText);
+  // Description.text(text || defaultText);
 }
 
 function showTableForYear(year, drivers) {

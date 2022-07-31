@@ -260,12 +260,7 @@ function showPosition(d) {
 
 function showWins(d) {
   const data = d3.range(d.wins);
-  d3.select(this)
-    .selectAll(".race")
-    .data(data)
-    .enter()
-    .append("div")
-    .attr("class", "race thatyear");
+  d3.select(this).selectAll(".race").data(data).enter().append("div").attr("class", "race gold");
 }
 
 const teamFn = (d) => {

@@ -39,7 +39,7 @@ window.onload = async () => {
     index.get("Max").get("Verstappen"),
   ];
 
-  const years = [2005, 2008, 2012, 2016, 2021];
+  const years = [2008, 2012, 2016, 2021];
 
   showSceneDescriptions();
   prepareScene1(champions);

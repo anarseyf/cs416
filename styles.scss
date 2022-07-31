@@ -1,14 +1,15 @@
 :root {
   --bg: rgb(20, 21, 25);
+  --sidebar-bg: rgb(25, 26, 32);
   --highlight-bg: #222;
   --point-bg: #34353a;
   --text: rgb(160, 160, 160);
-  --brighttext: rgb(186, 186, 186);
-  --darktext: rgb(84, 84, 84);
+  --brighttext: rgb(221, 221, 221);
+  --darktext: rgb(71, 71, 71);
   --line: rgb(84, 84, 84);
-  --clickable: rgb(124, 135, 178);
+  --clickable: rgb(120, 136, 202);
   --orange: rgb(168, 110, 35);
-  --win: rgb(154, 158, 175);
+  --win: rgb(135, 138, 148);
   --row-bg: rgb(27, 29, 39);
 
   --transparent: rgba(0, 0, 0, 0);
@@ -38,6 +39,7 @@ body {
 
 #Main {
   width: 50%;
+  margin-left: 1em;
   overflow: visible;
 }
 
@@ -47,9 +49,9 @@ body {
   top: 0;
   height: 100%;
   width: 40%;
-  // background-color: rgb(61, 61, 61);
+  background-color: var(--sidebar-bg);
   padding: 2%;
-  border-left: 1px solid var(--text);
+  border-left: 1px solid var(--line);
   // overflow-y: scroll;
   margin-bottom: 2em;
 }
@@ -284,10 +286,10 @@ a {
   display: inline-block;
   width: 20px;
 }
-// .legend > * {
-//   display: inline-block;
-//   margin: 0.25em;
-// }
+.sidebarItem .legend > * {
+  display: inline-block;
+  margin: 0.25em;
+}
 
 .pointsChart {
   position: relative;
@@ -329,4 +331,5 @@ a {
 
 .bright {
   color: var(--brighttext);
+  font-weight: bold;
 }

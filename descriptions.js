@@ -17,12 +17,15 @@ const Descriptions = {
     description:
       "<p>The F1 Driver's championship started in 1950 with only 7 races. The seasons have grown steadily over the years, and today the Formula 1 championship features over 20 races each year.</p>" +
       "<p>Start by exploring the timeline of all completed championships between 1950 and today. Notice that some years (like <span class='bright'>2012</span>) are highly competitive, while others (like <span class='bright'>2013</span>) are dominated by a single driver.</p>" +
-      "<p>Click on the name of a world champion to reveal their win pattern over the years, as well as career statistics in the sidebar.</p>" +
-      "<p>Then scroll down to the next section to take a detailed look at a few World Champions of the last three decades.</p>",
+      "<p><span class='bright'>Click</span> on the name of a world champion to reveal their win pattern over the years, as well as career statistics in the sidebar.</p>" +
+      "<p>In the <a href='#Scene2'>next section</a> we'll take a closer look at the World Champions of the last three decades.</p>",
     legend: "<span class='race highlight thatyear'></span> races won by that year's champion",
   },
   Scene2: {
-    description: "World champions from 1994 to today. Click on a name to learn more.",
+    description:
+      "<p>These are the drivers who have won at least one World title from 1994 to today. Their careers are summarized in this interactive timeline view.</p>" +
+      "<p><span class='bright'>Mouse-over</span> on the timelines to see where each driver placed in a given season.</p>" +
+      "<p><span class='bright'>Click</span> on a driver name to reveal a detailed look at their career.</p>",
     legend: "<span class='champion'>&nbsp;</span><span> = championship won</span>",
     drivers: {
       "Michael Schumacher": "*** *** ***",
@@ -40,7 +43,9 @@ const Descriptions = {
     },
   },
   Scene3: {
-    description: "These were the most memorable seasons in recent years. Click to learn more.",
+    description:
+      "<p>These were some of the most memorable seasons in recent years. Each was contested down to the last race.</p>" +
+      "<p>Click on a year to show the race-by-race rivalry between the eventual champion and the runner-up.</p>",
     legend: "",
     years: {
       2012: {
