@@ -1,12 +1,16 @@
 :root {
+  --bg: rgb(20, 21, 25);
+  --highlight-bg: #222;
   --text: rgb(149, 149, 149);
   --brighttext: rgb(186, 186, 186);
   --darktext: rgb(84, 84, 84);
   --line: rgb(84, 84, 84);
   --clickable: rgb(124, 135, 178);
   --orange: rgb(168, 110, 35);
-  --win: rgb(69, 90, 168);
+  --win: rgb(154, 158, 175);
   --row-bg: rgb(27, 29, 39);
+
+  --transparent: rgba(0, 0, 0, 0);
 
   --gold: rgb(193, 168, 42);
   --darkgold: rgb(93, 78, 7);
@@ -14,8 +18,8 @@
   --bronze: rgb(101, 62, 30);
   --other: rgb(45, 65, 88);
 
-  --legend: rgba(0, 0, 0, 0);
-  --tooltip: rgba(0, 0, 0, 0);
+  --legend: var(--transparent);
+  --tooltip: var(--transparent);
 }
 
 @font-face {
@@ -24,7 +28,7 @@
 }
 
 body {
-  background-color: rgb(20, 21, 25);
+  background-color: var(--bg);
   color: var(--text);
   // font-variant: small-caps;
   font-family: "JetBrains", monospace;
@@ -33,7 +37,7 @@ body {
 
 #Main {
   width: 50%;
-  overflow-x: hidden;
+  overflow: visible;
 }
 
 #Sidebar {
@@ -45,7 +49,7 @@ body {
   // background-color: rgb(61, 61, 61);
   padding: 2%;
   border-left: 1px solid var(--text);
-  overflow-y: scroll;
+  // overflow-y: scroll;
   margin-bottom: 2em;
 }
 
@@ -76,6 +80,7 @@ body {
   // width: 100%;
   // border: 1px dotted purple;
   background-color: var(--tooltip);
+  // background-color: var(--highlight-bg);
   overflow: hidden;
 }
 
@@ -116,10 +121,10 @@ body {
 }
 
 .row.scene3 {
-  grid-template-columns: 1fr 1fr 5fr 3fr;
+  grid-template-columns: 0.5fr 1fr 5fr 3fr;
 }
 .header > .row.scene3 {
-  grid-template-columns: 2fr 5fr 3fr;
+  grid-template-columns: 1.5fr 5fr 3fr;
   gap: 0.5em;
   justify-items: start;
 }
@@ -135,7 +140,8 @@ body {
 
 .legend.row {
   display: block;
-  background-color: var(--legend);
+  // background-color: var(--legend);
+  background-color: var(--highlight-bg);
   margin-top: 1em;
   // border: 1px dotted orangered;
   // width: 100%;
@@ -171,7 +177,7 @@ a {
 .race.highlight::before {
   color: var(--gold);
 }
-.race.highlight.thatyear::before {
+.race.thatyear::before {
   color: var(--win);
 }
 .race.gold::before {
@@ -195,6 +201,9 @@ a {
   // border: 1px dotted slateblue;
   // margin-bottom: 0.5em;
 }
+.scene2row.highlighted {
+  background-color: var(--highlight-bg);
+}
 
 .scene3row {
   width: 100%;
@@ -214,31 +223,39 @@ a {
   grid-template-columns: repeat(31, minmax(6px, 1fr));
   grid-template-rows: 20px;
   gap: 0;
-  overflow: hidden;
+  // overflow: hidden;
   // border: 1px dotted orange;
 }
 .timelineYear {
   background-color: rgb(99, 67, 16);
-  border: 1px solid rgba(0, 0, 0, 1);
+  border: 1px solid var(--bg);
   height: 100%;
 }
-.timelineYear.highlighted {
-  border-color: #888;
+.timelineYear.champion {
+  // background-color: var(--gold);
+  // border: 1px solid #444;
 }
+.timelineYear.missing {
+  background-color: var(--transparent);
+}
+.timelineYear.missing.highlighted {
+  background-color: var(--highlight-bg);
+}
+
 .tick {
   color: #888;
-  border: 1px solid #444;
   overflow-x: visible;
-  opacity: 0;
+  // opacity: 0;
 }
+
 .tick:hover,
 .tick.highlighted {
-  opacity: 1;
+  // opacity: 1;
 }
 
 .driver:hover,
 .driver.highlighted {
-  background-color: #444;
+  background-color: var(--highlight-bg);
 }
 .champion {
   background-color: var(--gold);
@@ -249,11 +266,8 @@ a {
   color: var(--brighttext);
 }
 .missing {
-  background-color: #222 !important;
-  color: #555 !important;
-}
-.timelineYear.champion {
-  // background-color: var(--gold);
+  background-color: var(--transparent);
+  color: #555;
 }
 .legend .champion {
   // background-color: var(--gold);
@@ -289,5 +303,9 @@ a {
 }
 
 .row.scene2 .points {
-  background-color: #333;
+  background-color: var(--darktext);
+}
+
+.right {
+  text-align: right;
 }

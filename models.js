@@ -275,7 +275,7 @@ function computeIntersectionText(year, driverId, position) {
   const name = nameFn(driver);
   const pos = positionString(position);
 
-  return `${name} ${pos} the ${year} Championship.`;
+  return `${name} ${pos} the ${year} championship.`;
 }
 
 function computeDriverSummaryHtml(driverId) {

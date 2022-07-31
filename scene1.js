@@ -1,4 +1,4 @@
-const YearLimit = 2006; // 0
+const YearLimit = 2019; // 0
 
 function prepareScene1(champions) {
   const filtered = champions.filter((d) => d.year > YearLimit);
@@ -58,7 +58,7 @@ function showLegendForDriver(driverMaybe) {
   let html = Descriptions.Scene1.legend;
   if (driverMaybe) {
     const name = nameFn(driverMaybe);
-    html = `<span class='race gold'></span> = races won by ${name}`;
+    html = `<span class='race gold'></span> races won by ${name}`;
   }
 
   const Scene = d3.select("#Scene1");
