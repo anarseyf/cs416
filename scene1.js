@@ -75,12 +75,13 @@ function clearHighlights() {
 function showDriverStats(driverId) {
   clear();
 
-  const text = computeDriverSummaryText(driverId);
   const driver = Index.Driver.get(driverId);
   const name = nameFn(driver);
   showHeader(name);
+
+  const html = computeDriverSummaryHtml(driverId);
   const Subtitle = d3.select("#Sidebar .subtitle");
-  Subtitle.text(text);
+  Subtitle.html(html);
 }
 
 function highlightRacesWonBy(driverId, yearMaybe) {

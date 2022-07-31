@@ -157,7 +157,7 @@ function showDriverCareer(driver) {
   const standings = computeDriver(driver.driverId);
 
   showDriverDescription(driver);
-  const text = computeDriverSummaryText(driver.driverId);
+  const text = computeDriverSummaryHtml(driver.driverId);
   Subtitle.text(text);
 
   const headerData = ["Year", "Team", "Position", "Races won"];

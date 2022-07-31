@@ -187,15 +187,6 @@ a {
   color: var(--other);
 }
 
-#Scene2 {
-}
-
-.champions {
-}
-
-.timelines {
-}
-
 .scene2row {
   width: 100%;
   display: grid;
@@ -249,7 +240,10 @@ a {
 .driver.highlighted {
   background-color: #444;
 }
-
+.champion {
+  background-color: var(--gold);
+  color: black;
+}
 .sidebarItem .row.champion {
   background-color: var(--darkgold);
   color: var(--brighttext);
@@ -259,10 +253,10 @@ a {
   color: #555 !important;
 }
 .timelineYear.champion {
-  background-color: var(--gold);
+  // background-color: var(--gold);
 }
 .legend .champion {
-  background-color: var(--gold);
+  // background-color: var(--gold);
   display: inline-block;
   width: 20px;
 }

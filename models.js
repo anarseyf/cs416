@@ -278,7 +278,7 @@ function computeIntersectionText(year, driverId, position) {
   return `${name} ${pos} the ${year} Championship.`;
 }
 
-function computeDriverSummaryText(driverId) {
+function computeDriverSummaryHtml(driverId) {
   const driver = Index.Driver.get(driverId);
   const name = nameFn(driver);
 
@@ -294,7 +294,7 @@ function computeDriverSummaryText(driverId) {
   const racesStr = `${numWins} ${numWins === 1 ? "race" : "races"}`;
   const seasonsStr = `${numSeasons} ${numSeasons === 1 ? "season" : "seasons"}`;
 
-  return `${name} won ${titlesStr} and ${racesStr} across ${seasonsStr}.`;
+  return `${name} won <span class='champion'>${titlesStr}</span> and <span class='race gold'></span>${racesStr} across ${seasonsStr}.`;
 }
 
 function positionString(position) {
