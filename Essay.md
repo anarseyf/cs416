@@ -113,19 +113,37 @@ Dynamic: generated based on user selections, used in each scene. For example:
 - Scene 3:
   - **S7** (default):
     - no season row highlighted;
-    - career details in sidebar;
+    - empty sidebar;
   - **S8** (season selected):
     - season row highlighted;
     - career details in sidebar.
 
-### Why
+Making a selection in any section resets the other two sections to their default states.
+
+(This is not a full representation of the state machine, but a compact description of each scene's sub-states. For example, on page load all the scenes' default states {**S1**, **S3**, **S7**} coexist.)
 
 ## Triggers
 
 > What are the triggers that connect user actions to changes of state in the narrative visualization? What affordances are provided to the user to communicate to them what options are available to them in the narrative visualization?
 
--
--
--
+### Triggers
 
-### Why
+- Scene 1:
+  - **T1**: Select a driver → **S2**
+  - **T2**: Click reset → **S1**
+- Scene 2:
+  - **T**: Select a driver → **S4**
+  - **T**: Mouseover → **S5** or **S6**
+  - **T**: Click reset → **S3**
+- Scene 3:
+  - **T**: Select a season → **S8**
+
+### Affordances
+
+- Scene 1:
+  - The timeline is long, so the legend is provided both at the top and bottom of the list.
+- Scene 2:
+  - Names and years are shown in multiple places to help orient the viewer.
+  - On mouseover both the row and the column are highlighted to help the viewer locate the corresponding values (name and year).
+- Scene 3:
+  - The entire row is a click target, instead of just the year label.
