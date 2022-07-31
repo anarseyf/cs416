@@ -25,6 +25,12 @@ function showDriverTimelines(drivers) {
     .text((d) => nameFn(d.driver))
     .on("click", (e, d) => {
       showDriverCareer(d.driver);
+    })
+    .on("mouseenter", (e, d) => {
+      highlightTimeline(d.driver.driverId);
+    })
+    .on("mouseleave", (e, d) => {
+      highlightTimeline(undefined);
     });
 
   rows
@@ -50,9 +56,9 @@ function showTimeline(_this, timeline) {
     .classed("missing", (d) => d.position === 0)
     .style("opacity", opacityFn)
     .on("mouseenter", (e, d) => {
-      highlightYearAndDriver(d.year, d.driverId);
+      highlightIntersection(d.year, d.driverId);
     })
-    .on("mouseleave", () => highlightYearAndDriver(undefined, undefined));
+    .on("mouseleave", () => highlightIntersection(undefined, undefined));
 }
 
 function showYearAxis() {
@@ -79,10 +85,13 @@ function showYearAxis() {
     .on("mouseleave", () => highlightYear(undefined));
 }
 
-function highlightYearAndDriver(yearMaybe, driverIdMaybe) {
-  highlightYear(yearMaybe);
+function highlightIntersection(yearMaybe, driverIdMaybe) {
+  highlightYearAxis(yearMaybe);
   highlightDriver(driverIdMaybe);
+  highlightEither(yearMaybe, driverIdMaybe);
+}
 
+function highlightEither(yearMaybe, driverIdMaybe) {
   const Scene = d3.select("#Scene2");
   Scene.selectAll(".timelineYear").classed(
     "highlighted",
@@ -93,12 +102,21 @@ function highlightYearAndDriver(yearMaybe, driverIdMaybe) {
 function highlightYear(yearMaybe) {
   const Scene = d3.select("#Scene2");
   Scene.selectAll(".timelineYear").classed("highlighted", (d) => d.year === yearMaybe);
+}
+
+function highlightYearAxis(yearMaybe) {
+  const Scene = d3.select("#Scene2");
   Scene.selectAll(".tick").classed("highlighted", (d) => d === yearMaybe);
 }
 
 function highlightDriver(driverIdMaybe) {
   const Scene = d3.select("#Scene2");
   Scene.selectAll(".driver").classed("highlighted", (d) => d.driver.driverId === driverIdMaybe);
+}
+
+function highlightTimeline(driverIdMaybe) {
+  const Scene = d3.select("#Scene2");
+  Scene.selectAll(".timelineYear").classed("highlighted", (d) => d.driverId === driverIdMaybe);
 }
 
 const opacityFn = (d) => {
