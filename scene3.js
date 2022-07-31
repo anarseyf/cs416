@@ -1,6 +1,26 @@
+function prepareScene3(years) {
+  const Scene = d3.select("#Scene3");
+
+  Scene.selectAll(".row")
+    .data(years)
+    .enter()
+    .append("div")
+    .attr("class", "row scene3row")
+    .on("click", (e, d) => showYear(d));
+
+  Scene.selectAll(".row").append("div").attr("class", "year clickable").text(String);
+
+  Scene.selectAll(".row")
+    .append("div")
+    .attr("class", "name")
+    .text((d) => Descriptions.Scene3.years[d].summary);
+}
+
 function showYear(year) {
   clear();
   showHeader(year);
+
+  console.log("Show ", year);
 
   const driver1 = computeDriverForYearAtPosition(year, 1);
   const driver2 = computeDriverForYearAtPosition(year, 2);
@@ -11,6 +31,17 @@ function showYear(year) {
   const drivers = [driver1, driver2];
   showTableForYear(year, drivers);
   showLegendForYear(year, drivers);
+  showDescriptionForYear(year);
+}
+
+function showDescriptionForYear(year) {
+  const Sidebar = d3.select("#Sidebar");
+  const Description = Sidebar.select(".description");
+
+  const defaultText = `${year} Formula 1 Season`;
+  const text = Descriptions.Scene3.years[year]?.description ?? "";
+
+  Description.text(text || defaultText);
 }
 
 function showTableForYear(year, drivers) {

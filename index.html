@@ -1,6 +1,7 @@
 <head>
   <link rel="stylesheet" href="./styles.scss" />
   <script src="./d3.min.js"></script>
+  <script src="./descriptions.js"></script>
   <script src="./models.js"></script>
   <script src="./allScenes.js"></script>
   <script src="./scene1.js"></script>
@@ -13,23 +14,39 @@
     <div class="button"></div>
     <div class="sidebarItem headline"></div>
     <div class="sidebarItem subtitle"></div>
+    <div class="sidebarItem description"></div>
     <div class="sidebarItem content"></div>
     <div class="sidebarItem footer"></div>
   </div>
   <div id="Main">
-    <div id="Header" class="page"></div>
-    <div id="Year" class="page"></div>
-    <div id="Driver" class="page"></div>
-
-    <h2>Scene 2</h2>
-    <div id="Scene2" class="scene">
-      <div class="timelines scene2item"></div>
+    <h1>Formula 1 Data Explorer</h1>
+    <div id="Intro" class="scene">
+      <div class="description"></div>
+      <div class="legend"></div>
     </div>
 
-    <h2>Scene 1</h2>
-    <div id="Scene1" class="scene"></div>
+    <h2>1950-2021</h2>
+    <div id="Scene1" class="scene">
+      <div class="description"></div>
+      <div class="content"></div>
+    </div>
 
-    <h2>Scene 3</h2>
-    <div id="Scene3" class="scene"></div>
+    <h2>Champions of the Modern Era</h2>
+    <div id="Scene2" class="scene">
+      <div class="description"></div>
+      <div class="content"></div>
+    </div>
+
+    <h2>Epic Seasons</h2>
+    <div id="Scene3" class="scene">
+      <div class="description"></div>
+      <div class="content"></div>
+    </div>
+
+    <h2>Credits</h2>
+    <div id="Credits" class="scene">
+      <div class="dataNotes"></div>
+      <div class="author"></div>
+    </div>
   </div>
 </body>

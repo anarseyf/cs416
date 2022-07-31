@@ -1,5 +1,5 @@
 :root {
-  --text: rgb(92, 92, 92);
+  --text: rgb(149, 149, 149);
   --clickable: rgb(124, 135, 178);
   --orange: rgb(168, 110, 35);
   --green: green;
@@ -12,13 +12,13 @@
 
 @font-face {
   font-family: "JetBrains";
-  src: local("JetBrains Mono"), url("./fonts/JetBrains_Mono/static/JetBrainsMono-Regular.ttf");
+  src: local("JetBrains Mono Thin"), url("./fonts/JetBrains_Mono/static/JetBrainsMono-Thin.ttf");
 }
 
 body {
   background-color: rgb(20, 21, 25);
-  color: #bbb;
-  font-variant: small-caps;
+  color: var(--text);
+  // font-variant: small-caps;
   font-family: "JetBrains", monospace;
   margin: 2em;
 }
@@ -50,9 +50,13 @@ body {
 }
 
 .scene {
-  border: 1px dotted #8ac;
+  // border: 1px dotted #8ac;
   margin: 1em;
-  padding: 1em;
+  // padding: 1em;
+}
+
+.scene > .description {
+  margin-bottom: 2em;
 }
 
 #champions {
@@ -83,7 +87,8 @@ body {
 .row .name {
 }
 
-.clickable {
+.clickable,
+a {
   cursor: pointer;
   color: var(--clickable);
 }
@@ -98,7 +103,7 @@ body {
 .race::before {
   content: "⬤";
   color: var(--text);
-  font-size: 0.5em;
+  font-size: 0.3em;
 }
 .race:hover:before {
   // color: green;
@@ -139,6 +144,19 @@ body {
 
   // border: 1px dotted slateblue;
   // margin-bottom: 0.5em;
+}
+
+.scene3row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+
+  color: --text;
+  cursor: pointer;
+}
+.scene3row:hover,
+.scene3row.selected {
+  background-color: #555;
 }
 
 .timeline {

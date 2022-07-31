@@ -1,14 +1,18 @@
-function showChampions(champions) {
+const YearLimit = 2016; // 0
+
+function prepareScene1(champions) {
+  const filtered = champions.filter((d) => d.year > YearLimit);
+
   const Scene = d3.select("#Scene1");
-  Scene.selectAll(".row").data(champions).enter().append("div").attr("class", "row");
+  const Content = Scene.select(".content");
+  Content.selectAll(".row").data(filtered).enter().append("div").attr("class", "row");
 
-  Scene.selectAll(".row")
+  Content.selectAll(".row")
     .append("div")
-    .attr("class", "year clickable")
-    .text((d) => d.year)
-    .on("click", yearClick);
+    .attr("class", "year")
+    .text((d) => d.year);
 
-  Scene.selectAll(".row")
+  Content.selectAll(".row")
     .append("div")
     .attr("class", "name clickable")
     .text(nameFn)
@@ -17,11 +21,11 @@ function showChampions(champions) {
       highlightRacesWonBy(d.driverId);
     });
 
-  Scene.selectAll(".row").append("div").attr("class", "races").each(showRacesForYear);
+  Content.selectAll(".row").append("div").attr("class", "races").each(showRacesForYear);
 }
 
 function clearHighlights() {
-  d3.select("#Scene1").selectAll(".race").classed("highlight", false);
+  d3.select("#Scene1 .content").selectAll(".race").classed("highlight", false);
 }
 
 function highlightRacesWonBy(driverId, yearMaybe) {

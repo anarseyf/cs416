@@ -24,10 +24,6 @@ window.onload = async () => {
 
   const champions = computeChampions();
 
-  // Scene 1
-  showChampions(champions);
-
-  // Scene 2
   const index = Index.DriverByName;
   const drivers = [
     index.get("Michael").get("Schumacher"),
@@ -43,13 +39,19 @@ window.onload = async () => {
     index.get("Max").get("Verstappen"),
   ];
 
-  showDriverTimelines(drivers);
+  const years = [2012, 2016, 2021];
+
+  showSceneDescriptions();
+  prepareScene1(champions);
+  prepareScene2(drivers);
+  prepareScene3(years);
 
   showClearButton();
 
-  // showYear(2016);
   const Alonso = Index.DriverByName.get("Fernando").get("Alonso");
-  showDriverCareer(Alonso);
+  // showDriverCareer(Alonso);
+
+  showYear(2012);
 };
 
 function parseRow(d) {
@@ -104,8 +106,7 @@ function computeYearEndListAtPosition(position) {
     .map((s) => ({
       ...s,
       year: Index.Race.get(s.raceId).year,
-    }))
-    .filter((d) => d.year > 1990);
+    }));
 
   const list = leaderStandings.map(({ driverId, year, wins }) => {
     const { firstname, lastname } = Index.Driver.get(driverId);
@@ -130,6 +131,8 @@ function computeChampions() {
 }
 
 function computeDriverForYearAtPosition(year, position) {
+  // console.log(`computeDriverForYearAtPosition: ${year}, ${position}`);
+
   const list = computeYearEndListAtPosition(position);
   const entry = list.find((e) => e.year === year);
   return Index.Driver.get(entry.driverId);
