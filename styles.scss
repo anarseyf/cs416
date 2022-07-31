@@ -124,16 +124,6 @@ body {
 }
 
 #Scene2 {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  // grid-template-rows: 2rlh;
-  align-content: start;
-  justify-content: start;
-  gap: 0.5em;
-}
-
-.scene2item {
-  border: 1px dotted slateblue;
 }
 
 .champions {
@@ -142,17 +132,44 @@ body {
 .timelines {
 }
 
+.scene2row {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+
+  // border: 1px dotted slateblue;
+  // margin-bottom: 0.5em;
+}
+
 .timeline {
   display: grid;
-  grid-template-columns: repeat(32, 6px); //minmax(6px, 1fr));
+  grid-template-columns: repeat(32, minmax(6px, 1fr));
   grid-template-rows: 20px;
-  gap: 0.25em;
+  gap: 0;
   overflow: hidden;
   // border: 1px dotted orange;
 }
 .timelineYear {
   background-color: rgb(99, 67, 16);
-  height: 10px;
+  border: 1px solid rgba(0, 0, 0, 1);
+  height: 100%;
+}
+.timelineYear.highlighted {
+  border-color: #888;
+}
+.tick {
+  color: #888;
+  border: 1px solid #444;
+  overflow-x: visible;
+  opacity: 0;
+}
+.tick:hover,
+.tick.highlighted {
+  opacity: 1;
+}
+
+.driver.highlighted {
+  background-color: #444;
 }
 
 .champion {

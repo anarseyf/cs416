@@ -86,8 +86,6 @@ function showLegendForYear(year, drivers) {
   };
   list.push(others);
 
-  console.log(list);
-
   const Footer = d3.select("#Sidebar .footer");
   Footer.selectAll(".row")
     .data(list)

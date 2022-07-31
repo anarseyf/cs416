@@ -43,7 +43,7 @@ window.onload = async () => {
     index.get("Max").get("Verstappen"),
   ];
 
-  showDrivers(drivers);
+  showDriverTimelines(drivers);
 
   showClearButton();
 
@@ -210,7 +210,7 @@ function computeDriver(driverId, yearRangeMaybe) {
   const allStandings = fillInMissingYears(driverStandings, yearRangeMaybe);
   // console.log(`driverStandings for ${driverId}:`, driverStandings);
 
-  return allStandings;
+  return allStandings.map((s) => ({ ...s, driverId }));
 }
 
 function fillInMissingYears(standings, yearRangeMaybe) {
