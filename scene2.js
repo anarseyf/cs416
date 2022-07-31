@@ -190,7 +190,7 @@ function showDriverCareer(driver) {
 
   const standings = computeDriver(driver.driverId);
 
-  showDriverDescription(driver);
+  // showDriverDescription(driver);
   const html = computeDriverSummaryHtml(driver.driverId);
   Subtitle.html(html);
 
@@ -208,7 +208,7 @@ function showDriverCareer(driver) {
     .enter()
     .append("div")
     .attr("class", "row scene2")
-    .classed("champion", (d) => d.position === 1)
+    // .classed("champion", (d) => d.position === 1)
     .classed("missing", (d) => d.position === 0);
 
   Content.selectAll(".row")

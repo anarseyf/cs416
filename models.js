@@ -289,12 +289,12 @@ function computeDriverSummaryHtml(driverId) {
   const numWins = d3.sum(raceWinsByYear);
   const numSeasons = standings.filter((s) => s.position !== 0).length;
 
-  const titlesStr = `${numTitles} ${numTitles === 1 ? "title" : "titles"}`;
+  const titlesStr = `&nbsp;${numTitles} ${numTitles === 1 ? "title" : "titles"}&nbsp;`;
 
   const racesStr = `${numWins} ${numWins === 1 ? "race" : "races"}`;
   const seasonsStr = `${numSeasons} ${numSeasons === 1 ? "season" : "seasons"}`;
 
-  return `${name} won <span class='champion'>${titlesStr}</span> and <span class='race gold'></span>${racesStr} across ${seasonsStr}.`;
+  return `${name} won <span class='champion'>${titlesStr}</span> and <span class='race gold'></span> ${racesStr} across ${seasonsStr}.`;
 }
 
 function positionHtml(position) {

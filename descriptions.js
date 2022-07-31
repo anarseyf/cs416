@@ -1,7 +1,11 @@
 const Descriptions = {
   Intro: {
     description: "Explore the history of the Formula 1 World Championship",
-    legend: "Circle = race, rectangle = year or championship. Gold = won.",
+    legend:
+      "<p>Throughout this page:</p>" +
+      "<p></span> Grand Prix (an individual race): <span class='race'></span><br>" +
+      "Season (a year of races): <span class='championship'>&nbsp;</span><br>" +
+      "Gold color indicates a title win: <span class='champion'>&nbsp;</span> or a race win: <span class='race gold'></span></p>",
   },
   Scene1: {
     description:
