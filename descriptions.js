@@ -24,7 +24,8 @@ const Descriptions = {
   },
   Scene2: {
     description:
-      "<p>These are the drivers who have won at least one World title from 1994 to today. Their careers are summarized in this interactive timeline.</p>" +
+      "<p>These are the drivers who have won at least one World title from 1994 to today. Their careers are summarized in this interactive timeline. The two most successful drivers of all time are <span class='bright'>Michael Schumacher</span> and <span class='bright'>Lewis Hamilton</span>, with 7 titles each.</p>" +
+      "<p>A rare few find ultimate success early, while others take years to achieve their first (and sometimes only) title. Compare Hamilton and <span class='bright'>Nico Rosberg</span>: the former came within one point of winning in his rookie season (2007) and did become champion the following year, while the latter took over a decade (and quit immediately after reaching his goal in 2016).</p>" +
       "<p><span class='bright'>Mouse-over on the timeline</span> to see where each driver placed in a given season.</p>" +
       "<p><span class='bright'>Click on a driver</span> to take a closer look at their career.</p>",
     legend: "Championship won: <span class='champion'>&nbsp;</span>",

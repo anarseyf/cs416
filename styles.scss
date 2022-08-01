@@ -35,7 +35,11 @@ body {
   // font-variant: small-caps;
   font-family: "JetBrains", monospace;
   margin: 2em;
+  font-size: 0.9em;
   user-select: none;
+}
+body::-webkit-scrollbar {
+  scrollbar-color: var(--bg) var(--bg);
 }
 
 #Main {

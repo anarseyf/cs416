@@ -1,10 +1,16 @@
-# Narrative Visualization
+---
+output: pdf_document
+geometry: "left=2cm,right=2cm,top=2cm,bottom=2cm"
+---
 
-## by Anar Seyf aseyf2@illinois.edu
+# Narrative Visualization: Formula 1 Data Explorer
+
+## by Anar Seyf • aseyf2@illinois.edu
 
 - CS 416 Data Visualization @ UIUC MCS-DS
 - Summer 2022
-- [Source dataset](); [source code]()
+- Source code: https://github.com/anarseyf/cs416
+- Source dataset: https://www.kaggle.com/datasets/rohanrao/formula-1-world-championship-1950-2020
 
 ## Messaging
 
@@ -28,44 +34,46 @@ Together these sections serve as an introduction into the highly technical and c
 
 The scenes follow a consistent visual pattern: a title, followed by explanatory text, followed by the interactive slide, with details revealed in the sidebar.
 
-The consistency is maintained at the level of individual elements, and reinforced through legends. A circle always represents a race, a rectangle corresponds to a season, and the gold color is used to represent a victory. This color scheme is expanded in Scene 3: gold still represents a win, and silver represents second place.
+Consistency is maintained at the level of individual elements, and reinforced through legends. A circle always represents a race, a rectangle corresponds to a season, and the gold color is used to represent a victory. This color scheme is expanded in Scene 3: gold still represents a win, and silver represents second place.
 
-Wherever appropriate, numerical values are reinforced by showing a visual mark next to numbers. For example, in Scene 2 the sidebar table shows a bar chart in the position column; this provides an intuitive overview of the driver's career profile.
+Wherever appropriate, numerical values are reinforced by showing a visual mark next to numbers. For example, in Scene 2 the sidebar table shows inline bars in the position column; this provides an intuitive overview of the driver's career profile.
 
 ## Scenes
 
 > _What are the scenes of your narrative visualization? How are the scenes ordered, and why?_
 
-Scene 1 introduces the dataset by giving a high-level overview of what it represents (the Formula 1 championship). It provides a "fingerprint" of the entire history of the sport in compact form using a vertical timeline. (Vertical layout is preferred over horizontal for a timeline because most devices provide vertical scrolling, and users expect it.)
+Scene 1 introduces the dataset by giving a high-level overview of what it represents (Formula 1 drivers' championship history). It serves as a "fingerprint" of the entire history of the sport in compact form using a vertical timeline. (Vertical layout is preferred over horizontal for a timeline because most devices provide vertical scrolling, and users expect it.)
 
-Scene 2 focuses on a few specific drivers, revealing their career highlights.
+Scene 2 focuses on the world champions from recent years, revealing their career highlights.
 
-Scene 3 focuses on a handful of remarkable Formula 1 seasons, and provides a detailed look at rivalries that made each memorable.
+Scene 3 presents a short, curated list of standout seasons, and reveals a detailed look at rivalries that made each memorable.
 
-### Why:
+#### Why:
 
 Each scene builds on the previous both in narrative and visual terms, and each provides a progressively narrower, and more curated, slice of the story. This helps take the user from a cold start to familiarity without disorienting them.
 
-## Annotations.
+## Annotations
 
 > _What template was followed for the annotations, and why that template? How are the annotations used to support the messaging? Do the annotations change within a single scene, and if so, how and why?_
 
 There are two types of annotations here:
 
-Static:
+### Static
 
 - Pre-written text for each section, explaining the context and suggesting a starting point for exploration.
 - Curated lists (drivers in Scene 2 and seasons in Scene 3) themselves serve as annotations.
 
-Dynamic: generated based on user selections, used in each scene. For example:
+### Dynamic
+
+These are enerated based on user selections, used in each scene. For example:
 
 - `Michael Schumacher won 7 titles and 93 races across 19 seasons` - in Scenes 1 and 2;
 - `Jenson Button placed 2nd in the 2011 championship` - in Scene 2 on timeline mouse-over;
 - `9 races won by Nico Rosberg` - in Scene 3 (used in the legend at the bottom of the table).
 
-### Why:
+#### Why:
 
-Static annotations provide the look and feel of a newspaper article and help support the narrative structure; dynamic ones help support the data-driven part of the presentation, while making them read as complete sentences again helps with the narrative look and feel. This gives a balance which is a good match for the medium of an interactive document.
+Static annotations provide the look and feel of a newspaper article and help support the narrative structure; dynamic ones help support the data-driven part of the presentation, while making them read as complete sentences again helps with the narrative look and feel. This provides a balance which is a good match for the medium of an interactive document.
 
 ## Parameters and States
 
@@ -122,7 +130,7 @@ Making a selection in any section resets the other two sections to their default
 
 (This is not a full representation of the state machine, but a compact description of each scene's sub-states. For example, on page load all the scenes' default states {**S1**, **S3**, **S7**} coexist.)
 
-## Triggers
+## Triggers and Affordances
 
 > _What are the triggers that connect user actions to changes of state in the narrative visualization? What affordances are provided to the user to communicate to them what options are available to them in the narrative visualization?_
 
@@ -132,11 +140,11 @@ Making a selection in any section resets the other two sections to their default
   - **T1**: Select a driver → **S2**
   - **T2**: Click reset → **S1**
 - Scene 2:
-  - **T**: Select a driver → **S4**
-  - **T**: Mouseover → **S5** or **S6**
-  - **T**: Click reset → **S3**
+  - **T3**: Select a driver → **S4**
+  - **T4**: Mouseover → **S5** or **S6**
+  - **T5**: Click reset → **S3**
 - Scene 3:
-  - **T**: Select a season → **S8**
+  - **T6**: Select a season → **S8**
 
 ### Affordances
 
